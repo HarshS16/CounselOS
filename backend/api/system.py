@@ -8,7 +8,7 @@ from backend.api.schemas import (
     HealthResponse,
     ModelStatusResponse,
 )
-from backend.auth.session_auth import verify_session
+from backend.auth.session_auth import get_session_token, verify_session
 from backend.config import settings
 from backend.db.models import AuditEvent
 from backend.db.session import get_db
@@ -43,6 +43,16 @@ def health_check(request: Request, db: Session = Depends(get_db)):
         data_dir=str(settings.data_dir),
         uptime_seconds=round(time.time() - _start_time, 1),
     )
+
+
+@router.get("/session-token")
+def session_token(request: Request):
+    """Return the session token. Only accessible from loopback — no auth required."""
+    host = request.client.host if request.client else ""
+    if host not in ("127.0.0.1", "::1", "localhost"):
+        from fastapi import HTTPException
+        raise HTTPException(status_code=403, detail="Only accessible from localhost")
+    return {"token": get_session_token()}
 
 
 @router.get("/model-status", response_model=ModelStatusResponse, dependencies=[Depends(verify_session)])

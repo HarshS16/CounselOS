@@ -11,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from backend.db.models import Base
 from backend.db.session import get_db
 from backend.main import create_app
-from backend.auth.session_auth import get_session_token, initialize_session
+from backend.auth.session_auth import get_session_token
 
 
 @pytest.fixture
@@ -47,9 +47,8 @@ def app(tmp_path):
 
 @pytest.fixture
 def client(app):
-    initialize_session()
-    token = get_session_token()
     with TestClient(app) as c:
+        token = get_session_token()
         c.headers["Authorization"] = f"Bearer {token}"
         yield c
 
@@ -163,7 +162,9 @@ def test_list_documents(client):
 
     resp = client.get(f"/api/matters/{matter_id}/documents/")
     assert resp.status_code == 200
-    assert isinstance(resp.json(), list)
+    data = resp.json()
+    assert "documents" in data
+    assert isinstance(data["documents"], list)
 
 
 def test_cross_matter_isolation(client):
@@ -172,8 +173,8 @@ def test_cross_matter_isolation(client):
     m1 = resp1.json()["id"]
     m2 = resp2.json()["id"]
 
-    docs1 = client.get(f"/api/matters/{m1}/documents/").json()
-    docs2 = client.get(f"/api/matters/{m2}/documents/").json()
+    docs1 = client.get(f"/api/matters/{m1}/documents/").json()["documents"]
+    docs2 = client.get(f"/api/matters/{m2}/documents/").json()["documents"]
 
     doc_ids_1 = {d["id"] for d in docs1}
     doc_ids_2 = {d["id"] for d in docs2}

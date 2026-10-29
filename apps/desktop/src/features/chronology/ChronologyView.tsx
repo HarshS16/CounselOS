@@ -12,7 +12,6 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useChronology, useBuildChronology, useUpdateEvent } from "@/hooks/useApi";
-import { clsx } from "clsx";
 import type { TimelineEvent } from "@/types";
 
 const precisionLabel: Record<string, string> = {

@@ -11,7 +11,6 @@ import {
   Download,
   Settings,
   Shield,
-  ChevronRight,
   Menu,
   X,
   Home,

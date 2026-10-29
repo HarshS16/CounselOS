@@ -28,6 +28,10 @@ async def lifespan(app: FastAPI):
     logger.info("Session token generated (use for API auth)")
     logger.info("Session token: %s", token)
 
+    token_path = settings.data_dir / "session.token"
+    token_path.write_text(token)
+    logger.info("Session token written to %s", token_path)
+
     app.state.llm_service = None
     app.state.embedding_service = None
     app.state.vector_store = None
