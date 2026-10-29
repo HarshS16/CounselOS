@@ -1,0 +1,36 @@
+{
+  "models": [
+    {
+      "name": "default-llm",
+      "description": "Primary analysis model - 8B class instruction model at Q4 quantization",
+      "model_path": "",
+      "quantization": "Q4_K_M",
+      "context_length": 4096,
+      "file_hash": "",
+      "license_info": "Check model license before commercial use",
+      "runtime": "llama.cpp"
+    },
+    {
+      "name": "fallback-llm",
+      "description": "Fallback model for low-memory systems - 4B class at Q4 quantization",
+      "model_path": "",
+      "quantization": "Q4_K_M",
+      "context_length": 2048,
+      "file_hash": "",
+      "license_info": "Check model license before commercial use",
+      "runtime": "llama.cpp"
+    },
+    {
+      "name": "embedding-model",
+      "description": "Sentence embedding model for semantic search",
+      "model_path": "all-MiniLM-L6-v2",
+      "quantization": "float32",
+      "context_length": 512,
+      "file_hash": "",
+      "license_info": "Apache 2.0",
+      "runtime": "sentence-transformers"
+    }
+  ],
+  "version": "1.0.0",
+  "last_updated": "2026-10-28"
+}

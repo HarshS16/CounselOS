@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/nicedoc/tauri-schema/main/schema.json",
+  "productName": "CounselOS",
+  "version": "1.0.0",
+  "identifier": "com.counselos.app",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "title": "CounselOS - Private Legal Evidence Analysis",
+    "windows": [
+      {
+        "title": "CounselOS",
+        "width": 1400,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "resizable": true,
+        "fullscreen": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' http://127.0.0.1:8741; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:"
+    }
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    },
+    "fs": {
+      "scope": {
+        "allow": ["$APPDATA/**", "$HOME/.counselos/**"],
+        "deny": []
+      }
+    }
+  }
+}
