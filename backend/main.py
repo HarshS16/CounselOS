@@ -40,7 +40,7 @@ async def lifespan(app: FastAPI):
 
     try:
         from backend.retrieval.embeddings import EmbeddingService
-        app.state.embedding_service = EmbeddingService(model_name=settings.embedding_model_name)
+        app.state.embedding_service = EmbeddingService()
         logger.info("Embedding service initialized")
     except Exception as e:
         logger.warning("Failed to initialize embedding service: %s", e)
@@ -63,14 +63,7 @@ async def lifespan(app: FastAPI):
     if settings.llm_model_path and Path(settings.llm_model_path).exists():
         try:
             from backend.inference.llm_service import LLMService
-            app.state.llm_service = LLMService(
-                model_path=settings.llm_model_path,
-                context_length=settings.llm_context_length,
-                max_tokens=settings.llm_max_tokens,
-                temperature=settings.llm_temperature,
-                n_gpu_layers=settings.llm_n_gpu_layers,
-                n_threads=settings.llm_n_threads,
-            )
+            app.state.llm_service = LLMService()
             logger.info("LLM service initialized")
 
             if app.state.embedding_service and app.state.vector_store:
@@ -120,6 +113,8 @@ def create_app() -> FastAPI:
             "https://tauri.localhost",
             f"http://localhost:{settings.api_port}",
             f"http://127.0.0.1:{settings.api_port}",
+            "http://localhost:1420",
+            "http://127.0.0.1:1420",
         ],
         allow_credentials=True,
         allow_methods=["*"],

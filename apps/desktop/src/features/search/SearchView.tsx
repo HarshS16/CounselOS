@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Search, MessageSquare, FileText, Loader2, Bot, AlertTriangle } from "lucide-react";
 import { useSearch, useAsk } from "@/hooks/useApi";
 import { clsx } from "clsx";
 import type { QAResponse } from "@/types";
+
+type Mode = "ask" | "search";
 
 export default function SearchView() {
   const { matterId } = useParams();
   const [query, setQuery] = useState("");
   const [activeQuery, setActiveQuery] = useState("");
-  const [mode, setMode] = useState<"search" | "ask">("search");
+  const [mode, setMode] = useState<Mode>("ask");
   const [qaResult, setQaResult] = useState<QAResponse | null>(null);
 
   const { data: searchResults, isLoading: searching } = useSearch(
@@ -31,152 +32,288 @@ export default function SearchView() {
     }
   };
 
-  return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-xl font-bold mb-6">Search & Ask</h1>
+  const modeTabs: { key: Mode; icon: string; label: string }[] = [
+    { key: "ask", icon: "smart_toy", label: "Ask AI" },
+    { key: "search", icon: "manage_search", label: "Keyword Search" },
+  ];
 
-      <div className="flex gap-2 mb-4">
-        <button
-          onClick={() => setMode("search")}
-          className={clsx(
-            "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-            mode === "search"
-              ? "bg-[var(--color-accent)] text-white"
-              : "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)]"
-          )}
-        >
-          <Search size={16} />
-          Search
-        </button>
-        <button
-          onClick={() => setMode("ask")}
-          className={clsx(
-            "flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors",
-            mode === "ask"
-              ? "bg-[var(--color-accent)] text-white"
-              : "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)]"
-          )}
-        >
-          <MessageSquare size={16} />
-          Ask a Question
-        </button>
+  return (
+    <div className="px-space-lg py-space-xl">
+      {/* Header & Mode Toggle */}
+      <div className="flex flex-col gap-space-xs mb-space-lg">
+        <div className="flex flex-wrap items-baseline justify-between gap-space-md">
+          <div>
+            <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+              Search & Ask
+            </h1>
+            <p className="font-body-md text-body-md text-on-surface-variant mt-0.5">
+              Find facts or ask questions across case documents with verifiable citations.
+            </p>
+          </div>
+          <div className="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg">
+            {modeTabs.map((tab) => (
+              <button
+                key={tab.key}
+                onClick={() => setMode(tab.key)}
+                className={clsx(
+                  "flex items-center gap-1.5 px-space-md py-1 rounded font-label-md text-label-md transition-all",
+                  mode === tab.key
+                    ? "bg-primary text-on-primary shadow-micro"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
+                )}
+              >
+                <span className="material-symbols-outlined text-[16px]">
+                  {tab.icon}
+                </span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="mb-6">
-        <div className="flex gap-2">
+      {/* Query Box */}
+      <div className="bg-surface-container-lowest rounded-xl shadow-micro p-space-md mb-space-lg">
+        <form onSubmit={handleSubmit} className="relative flex items-center">
+          <div className="absolute left-space-md flex items-center pointer-events-none text-outline">
+            <span className="material-symbols-outlined text-[24px]">search</span>
+          </div>
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={
               mode === "search"
                 ? "Search across case documents..."
-                : "Ask a factual question about this case..."
+                : "Ask a question across case record, witness depositions, or pleadings..."
             }
-            className="flex-1 px-4 py-3 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)] text-sm focus:outline-none focus:border-[var(--color-accent)] transition-colors"
+            className="w-full h-[52px] pl-12 pr-32 bg-surface-container-low rounded-lg text-on-surface font-body-lg text-body-lg placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary"
           />
-          <button
-            type="submit"
-            disabled={!query.trim() || searching || askMutation.isPending}
-            className="px-5 py-3 rounded-xl bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] disabled:opacity-50 transition-colors"
-          >
-            {searching || askMutation.isPending ? (
-              <Loader2 size={16} className="animate-spin" />
-            ) : mode === "search" ? (
-              "Search"
-            ) : (
-              "Ask"
+          <div className="absolute right-2 flex items-center gap-1.5">
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                className="p-1.5 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
+              >
+                <span className="material-symbols-outlined text-[18px]">close</span>
+              </button>
             )}
-          </button>
-        </div>
-      </form>
+            <button
+              type="submit"
+              disabled={!query.trim() || searching || askMutation.isPending}
+              className="flex items-center gap-1.5 h-9 px-space-md bg-primary hover:bg-primary-container text-on-primary rounded font-label-md text-label-md shadow-micro transition-all disabled:opacity-50"
+            >
+              {searching || askMutation.isPending ? (
+                <span className="material-symbols-outlined text-[16px] animate-spin">
+                  autorenew
+                </span>
+              ) : (
+                <>
+                  <span>{mode === "search" ? "Search" : "Ask AI"}</span>
+                  <span className="material-symbols-outlined text-[16px]">
+                    arrow_forward
+                  </span>
+                </>
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
 
+      {/* Search Results */}
       {mode === "search" && searchResults && (
-        <div className="space-y-3">
-          <p className="text-xs text-[var(--color-text-muted)]">
-            {searchResults.total_results} results for "{searchResults.query}"
-          </p>
+        <div className="flex flex-col gap-space-md">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-space-xs">
+              <span className="font-title text-title text-on-surface font-semibold">
+                Search Results
+              </span>
+              <span className="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-semibold">
+                {searchResults.total_results} Found
+              </span>
+            </div>
+            <span className="font-body-sm text-body-sm text-on-surface-variant">
+              Query: &ldquo;{searchResults.query}&rdquo;
+            </span>
+          </div>
+
           {searchResults.results.map((r, i) => (
             <div
               key={`${r.chunk_id}-${i}`}
-              className="p-4 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)]"
+              className="bg-surface-container-lowest rounded-xl p-space-md shadow-micro hover:shadow-overlay transition-all flex flex-col gap-space-xs group"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <FileText size={14} className="text-[var(--color-accent)]" />
-                <span className="text-xs font-medium text-[var(--color-accent)]">
-                  {r.document_name}
-                </span>
-                <span className="text-xs text-[var(--color-text-muted)]">
-                  Pages {r.page_start}–{r.page_end}
-                </span>
-                <span className="text-xs text-[var(--color-text-muted)] ml-auto">
-                  {(r.score * 100).toFixed(0)}%
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-space-xs min-w-0">
+                  <span className="material-symbols-outlined text-[20px] text-primary">
+                    description
+                  </span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="font-title text-[13px] leading-tight text-on-surface font-semibold truncate group-hover:text-primary transition-colors">
+                      {r.document_name}
+                    </span>
+                    <span className="font-code-sm text-[11px] text-on-surface-variant">
+                      Pages {r.page_start}–{r.page_end}
+                    </span>
+                  </div>
+                </div>
+                <span className="font-code-sm text-code-sm px-1.5 py-0.5 bg-primary/10 text-primary rounded font-semibold shrink-0">
+                  {(r.score * 100).toFixed(0)}% Match
                 </span>
               </div>
-              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+              <div className="bg-surface-container-low rounded p-space-sm font-body-sm text-body-sm text-on-surface leading-normal mt-1">
                 {r.text}
-              </p>
+              </div>
             </div>
           ))}
         </div>
       )}
 
+      {/* AI Answer */}
       {mode === "ask" && qaResult && (
-        <div className="space-y-4">
-          <div className="p-5 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)]">
-            <div className="flex items-center gap-2 mb-3">
-              <Bot size={16} className="text-[var(--color-accent)]" />
-              <span className="text-xs font-medium text-[var(--color-accent)]">AI Answer</span>
-              {qaResult.abstained && (
-                <span className="text-xs px-2 py-0.5 rounded bg-[color-mix(in_srgb,var(--color-warning)_15%,transparent)] text-[var(--color-warning)]">
-                  Insufficient Evidence
-                </span>
-              )}
-              {qaResult.conflicts_detected && (
-                <span className="flex items-center gap-1 text-xs px-2 py-0.5 rounded bg-[color-mix(in_srgb,var(--color-danger)_15%,transparent)] text-[var(--color-danger)]">
-                  <AlertTriangle size={10} />
-                  Conflicting Sources
-                </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+          {/* Left: AI Synthesis */}
+          <div className="lg:col-span-7 flex flex-col gap-space-md">
+            <div className="bg-surface-container-lowest rounded-xl shadow-micro p-space-lg flex flex-col gap-space-md relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-primary/5 pointer-events-none blur-2xl" />
+
+              {/* Synthesis header */}
+              <div className="flex flex-wrap items-center justify-between gap-space-xs pb-space-xs">
+                <div className="flex items-center gap-space-sm">
+                  <span className="w-2.5 h-2.5 rounded-full bg-primary animate-pulse" />
+                  <span className="font-label-md text-label-md uppercase tracking-wider text-primary font-semibold">
+                    LOCAL LEGAL AI SYNTHESIS
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  {!qaResult.abstained && (
+                    <span className="flex items-center gap-1 bg-surface-container px-space-sm py-0.5 rounded-full text-tertiary">
+                      <span className="material-symbols-outlined text-[15px]">
+                        verified_user
+                      </span>
+                      <span className="font-code-sm text-code-sm font-semibold">
+                        Sourced from case documents
+                      </span>
+                    </span>
+                  )}
+                  {qaResult.abstained && (
+                    <span className="flex items-center gap-1 bg-error-container px-space-sm py-0.5 rounded-full text-on-error-container">
+                      <span className="material-symbols-outlined text-[15px]">
+                        warning
+                      </span>
+                      <span className="font-code-sm text-code-sm font-semibold">
+                        Insufficient Evidence
+                      </span>
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Answer body */}
+              <div className="font-body-md text-body-md text-on-surface leading-relaxed whitespace-pre-wrap">
+                {qaResult.answer}
+              </div>
+
+              {/* Conflict callout */}
+              {qaResult.conflicts_detected && qaResult.conflict_explanation && (
+                <div className="bg-surface-container-high rounded-lg p-space-md flex items-start gap-space-sm shadow-micro">
+                  <div className="p-1 rounded bg-error-container text-on-error-container flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="material-symbols-outlined text-[20px]">
+                      warning
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-label-md text-label-md text-on-surface font-semibold">
+                      Conflicting Sources Detected
+                    </span>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant">
+                      {qaResult.conflict_explanation}
+                    </p>
+                  </div>
+                </div>
               )}
             </div>
-            <p className="text-sm leading-relaxed whitespace-pre-wrap">
-              {qaResult.answer}
-            </p>
           </div>
 
-          {qaResult.citations.length > 0 && (
-            <div>
-              <h3 className="text-xs font-medium text-[var(--color-text-muted)] uppercase tracking-wider mb-2">
-                Sources
-              </h3>
-              <div className="space-y-2">
+          {/* Right: Citations */}
+          <div className="lg:col-span-5 flex flex-col gap-space-md">
+            {qaResult.citations.length > 0 && (
+              <>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-space-xs">
+                    <span className="font-title text-title text-on-surface font-semibold">
+                      Source Citations
+                    </span>
+                    <span className="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-semibold">
+                      {qaResult.citations.length} Found
+                    </span>
+                  </div>
+                </div>
+
                 {qaResult.citations.map((c, i) => (
                   <div
                     key={i}
                     className={clsx(
-                      "p-3 rounded-lg border text-xs",
-                      c.is_valid
-                        ? "bg-[var(--color-bg-secondary)] border-[var(--color-border-primary)]"
-                        : "bg-[color-mix(in_srgb,var(--color-danger)_5%,transparent)] border-[var(--color-danger)]"
+                      "bg-surface-container-lowest rounded-xl p-space-md shadow-micro flex flex-col gap-space-xs group",
+                      !c.is_valid && "border-l-[3px] border-error"
                     )}
                   >
-                    <div className="flex items-center gap-2 mb-1">
-                      <FileText size={12} className="text-[var(--color-accent)]" />
-                      <span className="font-medium">{c.document_name}</span>
-                      <span className="text-[var(--color-text-muted)]">Page {c.page_start}</span>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-space-xs min-w-0">
+                        <span
+                          className={clsx(
+                            "material-symbols-outlined text-[18px]",
+                            c.is_valid ? "text-primary" : "text-error"
+                          )}
+                        >
+                          description
+                        </span>
+                        <span className="font-label-md text-label-md text-on-surface font-semibold">
+                          {c.document_name}
+                        </span>
+                        <span className="font-code-sm text-code-sm bg-surface-container px-1.5 py-0.5 rounded text-on-surface-variant font-medium">
+                          Page {c.page_start}
+                          {c.page_end !== c.page_start && `–${c.page_end}`}
+                        </span>
+                      </div>
                       {!c.is_valid && (
-                        <span className="text-[var(--color-danger)]">Citation not verified</span>
+                        <span className="font-code-sm text-code-sm bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-semibold">
+                          Unverified
+                        </span>
                       )}
                     </div>
                     {c.quote && (
-                      <p className="text-[var(--color-text-secondary)] italic mt-1">
-                        "{c.quote}"
-                      </p>
+                      <div className="bg-surface-container-low rounded p-space-sm font-body-sm text-body-sm text-on-surface italic leading-normal mt-1">
+                        &ldquo;{c.quote}&rdquo;
+                      </div>
                     )}
                   </div>
                 ))}
-              </div>
-            </div>
-          )}
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Empty states */}
+      {mode === "search" && !searchResults && !searching && activeQuery === "" && (
+        <div className="flex flex-col items-center justify-center py-space-xl text-center">
+          <span className="material-symbols-outlined text-[48px] text-outline mb-space-md">
+            manage_search
+          </span>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Enter a keyword to search across all case documents.
+          </p>
+        </div>
+      )}
+
+      {mode === "ask" && !qaResult && !askMutation.isPending && (
+        <div className="flex flex-col items-center justify-center py-space-xl text-center">
+          <span className="material-symbols-outlined text-[48px] text-outline mb-space-md">
+            smart_toy
+          </span>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            Ask a factual question about this case. Answers are generated locally with verifiable citations.
+          </p>
         </div>
       )}
     </div>

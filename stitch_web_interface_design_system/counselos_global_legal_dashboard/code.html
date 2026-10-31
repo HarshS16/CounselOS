@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-on-surface":"#f7efeb","surface-container":"#f4ece8","primary-fixed-dim":"#c3c0ff","on-error-container":"#93000a","outline-variant":"#c7c4d8","outline":"#777587","surface-dim":"#e0d8d5","surface-container-low":"#faf2ee","on-error":"#ffffff","inverse-primary":"#c3c0ff","on-tertiary-container":"#8df09f","surface-variant":"#e9e1dd","tertiary-container":"#006f31","primary-fixed":"#e2dfff","background":"#fff8f5","surface-tint":"#4d44e3","on-secondary-container":"#fffbff","tertiary":"#005424","on-primary":"#ffffff","secondary":"#1d4ed8","on-tertiary-fixed":"#00210a","on-primary-fixed":"#0f0069","secondary-container":"#4069f2","on-secondary-fixed":"#001551","surface-container-highest":"#e9e1dd","error-container":"#ffdad6","primary":"#3525cd","on-surface":"#1e1b19","surface-container-high":"#eee7e3","on-surface-variant":"#464555","tertiary-fixed-dim":"#79db8d","tertiary-fixed":"#95f8a7","on-tertiary":"#ffffff","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#0039b5","surface":"#fff8f5","on-primary-container":"#dad7ff","surface-bright":"#fff8f5","on-tertiary-fixed-variant":"#005323","on-primary-fixed-variant":"#3323cc","secondary-fixed-dim":"#b7c4ff","primary-container":"#4f46e5","on-secondary":"#ffffff","secondary-fixed":"#dce1ff","on-background":"#1e1b19","inverse-surface":"#33302d"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"0.75rem","margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem","space-lg":"1rem","gutter":"1rem"},"fontFamily":{"headline-lg":["\"Source Serif 4\""],"headline-sm":["\"Source Serif 4\""],"body-sm":["Inter"],"body-md":["Inter"],"title":["Inter"],"headline-md":["\"Source Serif 4\""],"body-lg":["Inter"],"code-md":["JetBrains Mono"],"label-sm":["Inter"],"label-md":["Inter"],"code-sm":["JetBrains Mono"],"display":["\"Source Serif 4\""]},"fontSize":{"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22.4px","fontWeight":"400"}],"title":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"24px","fontWeight":"400"}],"code-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"display":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased select-none"><aside class="fixed left-0 top-0 bottom-0 w-[260px] bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col h-full overflow-hidden"><div class="p-space-lg flex flex-col gap-space-sm bg-surface-container-lowest"><div class="flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="CounselOS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WNOuRMdjXtPFTA_DaRt2DHv93IkT0-zhrUVK-qi5JpiYM7IDDbjsynWDe2HVYYnAr6OPytbItBxnCtFnB1702TnL0Gjz8MEPkqeocrnqGNFjiibAn7fCwkfPVZ7Jbrsy-n91FDi-YJV4f9voMPvdznCpT3xhYOm-Xr1UJZ9hWqZgpeS94XwV82ZE-XLF-kQ0Tug-VxdYwjt353itNWyWI3ihAco1t-DfUGOUjRt1pRAg"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">CounselOS</span></div><span class="font-code-sm text-code-sm bg-surface-container text-tertiary px-space-xs py-0.5 rounded font-semibold">v2.0</span></div><div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg self-start"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span class="font-code-sm text-code-sm text-tertiary tracking-wider font-semibold">LOCAL · SECURE</span></div></div><div class="px-space-md py-space-sm bg-surface-container border-t border-b border-surface-variant flex items-center justify-between cursor-pointer hover:bg-surface-container-high transition-colors"><div class="flex flex-col min-w-0 pr-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Matter</span><span class="font-title text-[13px] leading-tight text-on-surface truncate">Singh v. Sharma</span><span class="font-code-sm text-[10px] leading-none text-on-surface-variant truncate mt-0.5">REF-2024-0145 · Delhi HC</span></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">unfold_more</span></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md flex flex-col gap-space-lg"><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Input &amp; Search</div><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 rounded transition-colors bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]" data-path="overview" href="#"><span class="font-body-sm text-body-sm">Overview</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documents" href="#"><span class="font-body-sm text-body-sm">Documents</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">14</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="search-ask" href="#"><span class="font-body-sm text-body-sm">Search &amp; Ask</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Analysis</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="font-body-sm text-body-sm">Claims</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">47</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="entities" href="#"><span class="font-body-sm text-body-sm">Entities</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="chronology" href="#"><span class="font-body-sm text-body-sm">Chronology</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">12</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="compare" href="#"><span class="font-body-sm text-body-sm">Compare</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="findings" href="#"><span class="font-body-sm text-body-sm">Findings</span><span class="font-code-sm text-[10px] leading-tight bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded font-semibold">3 pending</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Case Work</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="arguments-builder" href="#"><span class="font-body-sm text-body-sm">Arguments Builder</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="case-diary" href="#"><span class="font-body-sm text-body-sm">Case Diary</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="hearings" href="#"><span class="font-body-sm text-body-sm">Hearings</span><span class="font-code-sm text-[10px] leading-tight bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-semibold">4 Nov</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tasks" href="#"><span class="font-body-sm text-body-sm">Tasks</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">5 open</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="witnesses" href="#"><span class="font-body-sm text-body-sm">Witnesses</span></a></nav></div><div class="p-space-sm bg-surface-container-lowest border-t border-surface-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant"><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Quick Export" type="button"><span class="material-symbols-outlined text-[18px]">download</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Settings" type="button"><span class="material-symbols-outlined text-[18px]">settings</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle Theme" type="button"><span class="material-symbols-outlined text-[18px]">light_mode</span></button></div><div class="flex items-center gap-space-sm pt-space-xs border-t border-surface-variant"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsVZfus7n0s6QXBQFPxuBSNhJmave2WwsBITQzk3PyXmlHO__FuSWiQr3FMjT54krPTFUj6mIlbfctNZk_va-9ugyfxye9bGUVXPC1NCw4bBWY5OhLuaVzYe56qsI2yNgROsrewywGUwG1oxM77rwR3kk6TQTSnt3lqiO-XmcvF5Vti8pnCgMUlP6jmCdlPRLzVplrshQc9jamfEsScmiWMIwLR_LVAGjw0OPTceVa"/><div class="flex flex-col min-w-0"><span class="font-title text-[12px] leading-tight text-on-surface truncate">Adv. Rajesh Sharma</span><span class="font-body-sm text-[10px] leading-none text-on-surface-variant truncate">Lead Counsel</span></div></div></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-14 bg-surface-container-lowest z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5"><button aria-label="Close" class="w-3 h-3 rounded-full bg-error hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Minimize" class="w-3 h-3 rounded-full bg-[#f59e0b] hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Maximize" class="w-3 h-3 rounded-full bg-[#10b981] hover:opacity-80 transition-opacity" type="button"></button></div><div class="flex items-center gap-space-xs text-on-surface-variant text-label-md"><span class="material-symbols-outlined text-[16px]">gavel</span><span class="font-body-sm text-body-sm text-on-surface-variant">Tauri Desktop · Session Active</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center justify-between gap-space-lg bg-surface-container-low px-space-md py-1.5 rounded border border-surface-variant text-on-surface-variant hover:text-on-surface hover:border-outline transition-colors w-72" type="button"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm truncate">Search matter facts...</span></div><kbd class="font-code-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container border border-surface-variant text-on-surface-variant">Ctrl+K</kbd></button><div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-tertiary font-code-sm text-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span><span>LOCAL ONLY</span></div><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-1.5 rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-[0_1px_2px_rgba(28,25,23,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">add</span><span>New Matter</span></button></div></header><main class="relative pt-14 w-full px-space-lg min-h-screen bg-background"><div class="flex flex-col w-full">
+<div class="flex flex-col gap-space-xl pb-space-xl">
+<!-- Top Greeting & Sovereign Engine Status Banner -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-code-sm text-code-sm bg-surface-container px-space-sm py-0.5 rounded text-primary font-semibold uppercase tracking-wider">Advocate Desktop v2.4</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">·</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+            Privileged Chambers Instance
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Good morning, Adv. Rajesh.</h1>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          You have 3 active matters with pending AI reviews and 1 hearing scheduled this week. Offline engine running locally on Apple Silicon (M-series / CPU) — zero external data telemetry.
+        </p>
+</div>
+<div class="flex items-center gap-space-md shrink-0 self-start md:self-auto">
+<div class="flex flex-col items-end text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Local Enclave</span>
+<span class="font-code-md text-code-md text-tertiary font-semibold flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+            Hardware Secured
+          </span>
+</div>
+<div class="h-8 w-px bg-surface-variant hidden sm:block"></div>
+<button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-lg py-2 rounded-lg font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Draft Daily Board</span>
+</button>
+</div>
+</header>
+<!-- Key Stats Summary (3 Metrics Bento Row) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Metric 1: Active Matters -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md transition-all hover:shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Matters Under Scrutiny</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-headline-lg text-[34px] leading-tight text-on-surface font-semibold">12</span>
+<span class="font-code-sm text-code-sm text-tertiary font-semibold">+2 this month</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">balance</span>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>4 High Court</span>
+<span class="text-outline">·</span>
+<span>8 Dist/NCLT</span>
+<span class="text-outline">·</span>
+<span class="text-outline">3 Archived</span>
+</div>
+</div>
+<!-- Metric 2: Pending Reviews -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md transition-all hover:shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Evidentiary Scrutiny</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-headline-lg text-[34px] leading-tight text-secondary font-semibold">5</span>
+<span class="font-code-sm text-code-sm text-secondary font-semibold">Pending Audits</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">policy</span>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span class="text-error font-medium truncate max-w-[150px]">3 in Singh v. Sharma</span>
+<span class="text-outline">·</span>
+<span class="truncate max-w-[140px]">2 in Gupta Ind.</span>
+</div>
+</div>
+<!-- Metric 3: Upcoming Hearings -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md transition-all hover:shadow-md">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Court Appearances</span>
+<div class="flex items-baseline gap-space-sm mt-1">
+<span class="font-headline-lg text-[34px] leading-tight text-on-surface font-semibold">8</span>
+<span class="font-code-sm text-code-sm text-error font-semibold">Next in 4 days</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-error-container text-on-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">gavel</span>
+</div>
+</div>
+<div class="pt-space-sm bg-surface-container-low p-space-sm rounded-lg flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span class="text-on-surface font-medium truncate">Delhi High Court · Court 24</span>
+<span class="text-outline">·</span>
+<span>Item 14</span>
+</div>
+</div>
+</section>
+<!-- Main Workspace Split: Left (Hearings & Trail) | Right (Actions, Ingestion, Local Diagnostics) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN: Hearings & Chronological Audit Feed (8 Cols) -->
+<div class="xl:col-span-8 flex flex-col gap-space-lg">
+<!-- Upcoming Hearings Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Upcoming Hearings</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Daily cause list alignment &amp; hearing brief preparation</p>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg self-start sm:self-auto font-label-md text-label-md">
+<button class="hearing-tab active px-space-md py-1 rounded bg-surface-container-lowest text-primary shadow-sm font-semibold transition-all" type="button">Next 7 Days</button>
+<button class="hearing-tab px-space-md py-1 rounded text-on-surface-variant hover:text-on-surface transition-all" type="button">This Month</button>
+<button class="hearing-tab px-space-md py-1 rounded text-on-surface-variant hover:text-on-surface transition-all" type="button">All Scheduled</button>
+</div>
+</div>
+<!-- Cause List Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="py-space-md px-space-lg font-semibold">Date &amp; Listing</th>
+<th class="py-space-md px-space-lg font-semibold">Matter &amp; Forum</th>
+<th class="py-space-md px-space-lg font-semibold">Purpose &amp; Stage</th>
+<th class="py-space-md px-space-lg font-semibold">Status / Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0">
+<!-- Hearing Row 1 (Priority) -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-code-md text-code-md font-semibold text-on-surface">04 Nov 2026</span>
+<span class="font-label-sm text-label-sm text-error font-medium">In 4 days (Wed)</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-title text-[14px] text-on-surface font-semibold">Singh v. Sharma</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Delhi High Court, Courtroom 24</span>
+<span class="font-code-sm text-code-sm text-outline mt-0.5">Hon'ble Justice Verma</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Final Arguments on Maintainability</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">CPC Order VII Rule 11</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col gap-1.5 items-start">
+<span class="font-code-sm text-[11px] px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-semibold">Active prep</span>
+<button class="mt-1 flex items-center gap-1 px-space-sm py-1 rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[14px]">edit_document</span>
+<span>Prepare Brief</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Hearing Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-code-md text-code-md font-semibold text-on-surface">07 Nov 2026</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">In 7 days (Sat)</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-title text-[14px] text-on-surface font-semibold">Gupta Industries v. StateBank</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">NCLT Mumbai Bench IV</span>
+<span class="font-code-sm text-code-sm text-outline mt-0.5">Coram: Judicial Member K. Rao</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Section 7 IBC Admission Hearing</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">Insolvency &amp; Bankruptcy Code</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col gap-1 items-start">
+<span class="font-code-sm text-[11px] px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium">Counter filed</span>
+<button class="text-primary hover:underline font-label-md text-label-md mt-1 flex items-center gap-0.5" type="button">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Hearing Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors bg-surface-container-lowest">
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-code-md text-code-md font-semibold text-on-surface">12 Nov 2026</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">In 12 days</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="font-title text-[14px] text-on-surface font-semibold">State v. Kumar</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Patiala House Sessions Court</span>
+<span class="font-code-sm text-code-sm text-outline mt-0.5">ASJ Special NIA/CBI Court</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Cross-examination of PW-2</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant mt-0.5">Police Witness / Forensics</span>
+</div>
+</td>
+<td class="py-space-md px-space-lg align-top">
+<div class="flex flex-col gap-1 items-start">
+<span class="font-code-sm text-[11px] px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-medium">Summons issued</span>
+<button class="text-primary hover:underline font-label-md text-label-md mt-1 flex items-center gap-0.5" type="button">
+<span>View Docket</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Visual Mini-Insight: Matter Category & Stage Distribution -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-lg">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Evidentiary Load Density</span>
+<span class="font-code-sm text-code-sm text-primary font-semibold">14,820 pgs indexed</span>
+</div>
+<!-- Progress Matrix -->
+<div class="space-y-space-sm">
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface">Singh v. Sharma (Arbitration &amp; Plaint)</span>
+<span class="text-on-surface font-semibold">78% Ready</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container">
+<div class="h-2 rounded-full bg-primary" style="width: 78%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between font-label-sm text-label-sm mb-1">
+<span class="text-on-surface">Gupta Industries (Financial Statements)</span>
+<span class="text-on-surface font-semibold">92% Ready</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container">
+<div class="h-2 rounded-full bg-tertiary" style="width: 92%"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex items-center gap-space-lg">
+<div class="w-20 h-20 shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="60, 100" stroke-width="3.5"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="25, 100" stroke-dashoffset="-60" stroke-width="3.5"></path>
+</svg>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Corroboration Ratio</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">85% Corroborated</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-0.5">
+                Claims linked to certified exhibits, annexures, or stamped ledger pages.
+              </p>
+</div>
+</div>
+</div>
+<!-- Recent Activity & Audit Trail -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">history_edu</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity &amp; Audit Trail</h2>
+</div>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+              Cryptographically Stamped
+            </span>
+</div>
+<div class="flex flex-col gap-space-sm mt-1">
+<!-- Trail Item 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-primary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title text-[13px] text-on-surface font-semibold">Exhibit_C_BankStatement.pdf uploaded</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">2 hrs ago</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  18 pages processed via local PyMuPDF parser. All OCR chunks hashed and indexed in local SQLite-VSS.
+                </p>
+<div class="flex items-center gap-space-sm mt-2">
+<span class="font-code-sm text-[10px] uppercase px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">SHA256: 9e4f..bc21</span>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline">View Exhibit</span>
+</div>
+</div>
+</div>
+<!-- Trail Item 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-tertiary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title text-[13px] text-on-surface font-semibold">Chronology Review in Singh v. Sharma</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Yesterday, 17:42</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Reviewed and accepted 4 AI chronology findings. Disputed notice delivery date updated according to speed post receipt.
+                </p>
+<div class="flex items-center gap-space-sm mt-2">
+<span class="font-code-sm text-[10px] uppercase px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">By Adv. Rajesh Sharma</span>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline">Inspect Diff</span>
+</div>
+</div>
+</div>
+<!-- Trail Item 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors flex items-start gap-space-md">
+<div class="w-8 h-8 rounded bg-surface-container flex items-center justify-center text-secondary shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">difference</span>
+</div>
+<div class="flex flex-col flex-1 min-w-0">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title text-[13px] text-on-surface font-semibold">Contradiction Matrix Compiled</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">28 Oct, 11:15</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                  Cross-document matrix generated for Gupta Industries between Director's affidavit and MCA-21 portal records.
+                </p>
+<div class="flex items-center gap-space-sm mt-2">
+<span class="font-code-sm text-[10px] uppercase px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">NCLT Evidence Bundle</span>
+<span class="font-label-sm text-label-sm text-primary cursor-pointer hover:underline">Download Matrix</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN: Evidence Actions, Quick Ingestion & Hardware Status (4 Cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<!-- Pending Evidence Reviews Card -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-error">notification_important</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pending Reviews</h2>
+</div>
+<span class="font-code-sm text-code-sm px-2 py-0.5 rounded bg-error-container text-on-error-container font-semibold">5 actions</span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Review Item 1: Singh v. Sharma -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs transition-colors hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-title text-[13px] text-on-surface font-semibold">Singh v. Sharma</span>
+<span class="font-code-sm text-[10px] px-1.5 py-0.2 rounded bg-error-container text-on-error-container font-medium">3 findings</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Discrepancy detected between Plaint p.5 and Exh.C regarding execution date of the original settlement accord.
+              </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-code-sm text-code-sm text-outline">[ANNEXURE P-4 · P.112]</span>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline flex items-center gap-0.5" type="button">
+<span>Review All</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Review Item 2: Gupta Industries -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex flex-col gap-space-xs transition-colors hover:bg-surface-container">
+<div class="flex items-center justify-between">
+<span class="font-title text-[13px] text-on-surface font-semibold">Gupta Industries</span>
+<span class="font-code-sm text-[10px] px-1.5 py-0.2 rounded bg-surface-container-highest text-on-surface-variant font-medium">2 claims</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Attribution of corporate guarantee letter contested in counter-affidavit paragraph 14.
+              </p>
+<div class="flex items-center justify-between pt-1">
+<span class="font-code-sm text-code-sm text-outline">[SEC. 7 IBC · EXH. G]</span>
+<button class="font-label-md text-label-md text-primary font-semibold hover:underline flex items-center gap-0.5" type="button">
+<span>Review</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Quick Case Intake & Actions Panel -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Quick Intake &amp; Tools</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Chambers Utility</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<button class="w-full flex items-center justify-between px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-primary hover:text-on-primary text-on-surface transition-all group shadow-sm" type="button">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-primary group-hover:text-on-primary">add_box</span>
+<span class="font-title text-[13px] font-semibold">+ Create New Matter</span>
+</div>
+<span class="font-code-sm text-[10px] opacity-70 group-hover:opacity-100">⌘N</span>
+</button>
+<!-- Document Drag and Drop Ingestion Slot -->
+<div class="w-full p-space-lg rounded-lg bg-surface-container-low flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-colors" id="dropzone">
+<span class="material-symbols-outlined text-[28px] text-primary mb-1">drive_folder_upload</span>
+<span class="font-title text-[13px] text-on-surface font-semibold">Document Bundles Intake</span>
+<span class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Drag &amp; drop scanned PDF / court orders</span>
+<span class="font-code-sm text-[10px] text-tertiary mt-2 bg-surface-container px-2 py-0.5 rounded">Auto-OCR + Local Parsing</span>
+</div>
+<button class="w-full flex items-center justify-between px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors mt-1" type="button">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary">calculate</span>
+<span class="font-title text-[13px] font-semibold">Limitation Act Calculator</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between px-space-md py-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface transition-colors" type="button">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">menu_book</span>
+<span class="font-title text-[13px] font-semibold">Bare Acts Reference Library</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Sovereign Local System Health Widget -->
+<section class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-tertiary">memory</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Local System Health</h2>
+</div>
+<span class="font-code-sm text-code-sm text-tertiary font-semibold">M2 Max · 32GB</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Sub-item 1: LLM -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Local LLM Inference</span>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  Running Offline
+                </span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>Qwen2.5-Legal (14B Quantized)</span>
+<span>Metal 4.0</span>
+</div>
+</div>
+<!-- Sub-item 2: OCR Engine -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">OCR Processing Pipeline</span>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                  Ready
+                </span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>PyMuPDF · Tesseract 5.3</span>
+<span>English &amp; Devanagari</span>
+</div>
+</div>
+<!-- Sub-item 3: Vector DB -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Encrypted Vector Index</span>
+<span class="font-code-sm text-code-sm text-on-surface font-medium">4.2 GB used</span>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>SQLite-VSS (AES-256)</span>
+<span>Zero Telemetry</span>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1 font-code-sm text-[11px] text-outline">
+<span>Chambers Secure Protocol</span>
+<span class="text-tertiary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+              Zero-Cloud Sandbox
+            </span>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Simple filter tab switching for the Upcoming Hearings table
+  document.querySelectorAll('.hearing-tab').forEach(button => {
+    button.addEventListener('click', (e) => {
+      document.querySelectorAll('.hearing-tab').forEach(btn => {
+        btn.classList.remove('active', 'bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+        btn.classList.add('text-on-surface-variant');
+      });
+      const target = e.currentTarget;
+      target.classList.add('active', 'bg-surface-container-lowest', 'text-primary', 'shadow-sm', 'font-semibold');
+      target.classList.remove('text-on-surface-variant');
+    });
+  });
+
+  // Drag and drop visual cues for intake box
+  const dropzone = document.getElementById('dropzone');
+  if (dropzone) {
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.classList.add('bg-surface-container-high');
+    });
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.classList.remove('bg-surface-container-high');
+    });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('bg-surface-container-high');
+      alert('Tauri local filesystem: File staging initialized for OCR extraction.');
+    });
+  }
+</script></main></div></body></html>

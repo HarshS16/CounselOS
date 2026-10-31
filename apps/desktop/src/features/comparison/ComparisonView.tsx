@@ -1,85 +1,148 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { GitCompare, Loader2, CheckCircle2, FileText } from "lucide-react";
 import { useDocuments, useCompareDocuments, useExtractClaims } from "@/hooks/useApi";
 import type { DiscrepancyResult } from "@/types";
 
-const findingTypeColors: Record<string, string> = {
-  contradiction: "var(--color-danger)",
-  date_discrepancy: "var(--color-danger)",
-  amount_discrepancy: "var(--color-danger)",
-  attribution_difference: "var(--color-warning)",
-  omission: "var(--color-warning)",
-  ambiguity: "var(--color-warning)",
-  corroboration: "var(--color-success)",
-  other: "var(--color-text-muted)",
+const findingTypeConfig: Record<string, { badgeClass: string; borderClass: string }> = {
+  contradiction: {
+    badgeClass: "bg-error-container text-on-error-container",
+    borderClass: "border-l-error",
+  },
+  date_discrepancy: {
+    badgeClass: "bg-error-container text-on-error-container",
+    borderClass: "border-l-error",
+  },
+  amount_discrepancy: {
+    badgeClass: "bg-error-container text-on-error-container",
+    borderClass: "border-l-error",
+  },
+  attribution_difference: {
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
+    borderClass: "border-l-secondary",
+  },
+  omission: {
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
+    borderClass: "border-l-secondary",
+  },
+  ambiguity: {
+    badgeClass: "bg-secondary-fixed text-on-secondary-fixed",
+    borderClass: "border-l-secondary",
+  },
+  corroboration: {
+    badgeClass: "bg-tertiary-fixed text-on-tertiary-fixed",
+    borderClass: "border-l-tertiary",
+  },
+  other: {
+    badgeClass: "bg-surface-container-high text-on-surface-variant",
+    borderClass: "border-l-outline",
+  },
 };
 
 function FindingCard({ finding }: { finding: DiscrepancyResult }) {
   const [expanded, setExpanded] = useState(false);
-  const color = findingTypeColors[finding.finding_type] || "var(--color-text-muted)";
+  const config = findingTypeConfig[finding.finding_type] || findingTypeConfig.other;
 
   return (
-    <div className="p-4 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)]">
-      <div className="flex items-center gap-2 mb-2">
-        <span
-          className="text-xs px-2 py-0.5 rounded font-medium capitalize"
-          style={{ color, backgroundColor: `color-mix(in srgb, ${color} 12%, transparent)` }}
+    <div className={`bg-surface-container-lowest rounded-xl shadow-micro border border-surface-variant border-l-[3px] ${config.borderClass}`}>
+      <div className="p-space-lg">
+        {/* Type + status badges */}
+        <div className="flex items-center gap-space-sm mb-space-sm">
+          <span className={`font-code-sm text-[11px] px-2 py-0.5 rounded font-medium capitalize ${config.badgeClass}`}>
+            {finding.finding_type.replace(/_/g, " ")}
+          </span>
+          <span className="font-code-sm text-[11px] px-2 py-0.5 rounded font-medium capitalize bg-surface-container-high text-on-surface-variant">
+            {finding.review_status}
+          </span>
+        </div>
+
+        {/* Summary */}
+        <p className="font-body-md text-body-md text-on-surface font-medium mb-space-sm">
+          {finding.summary}
+        </p>
+
+        {/* Expand toggle */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-primary-container transition-colors"
         >
-          {finding.finding_type.replace(/_/g, " ")}
-        </span>
-        <span className="text-xs px-2 py-0.5 rounded capitalize text-[var(--color-text-muted)]">
-          {finding.review_status}
-        </span>
-      </div>
+          <span className="material-symbols-outlined text-[14px]">
+            {expanded ? "expand_more" : "chevron_right"}
+          </span>
+          {expanded ? "Hide details" : "Show details"}
+        </button>
 
-      <p className="text-sm font-medium mb-2">{finding.summary}</p>
+        {expanded && (
+          <div className="mt-space-md space-y-space-md">
+            {/* Explanation */}
+            {finding.explanation && (
+              <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+                {finding.explanation}
+              </p>
+            )}
 
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="text-xs text-[var(--color-accent)] hover:underline"
-      >
-        {expanded ? "Hide details" : "Show details"}
-      </button>
+            {/* Side-by-side claims */}
+            {(finding.claim_a || finding.claim_b) && (
+              <div className="flex gap-space-sm items-stretch">
+                {finding.claim_a && (
+                  <div className="flex-1 p-space-md rounded-lg bg-surface-container border border-surface-variant">
+                    <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold mb-space-xs">
+                      Claim A
+                    </div>
+                    <p className="font-body-sm text-body-sm text-on-surface">
+                      {finding.claim_a.claim_text}
+                    </p>
+                    {finding.claim_a.sources && finding.claim_a.sources.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-space-sm">
+                        {finding.claim_a.sources.map((src, i) => (
+                          <span key={i} className="font-code-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">
+                            {src.document_name} · p.{src.page_start}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
 
-      {expanded && (
-        <div className="mt-3 space-y-3">
-          {finding.explanation && (
-            <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-              {finding.explanation}
-            </p>
-          )}
+                {finding.claim_a && finding.claim_b && (
+                  <div className="flex items-center px-space-xs">
+                    <span className="font-label-sm text-label-sm text-outline font-semibold">vs</span>
+                  </div>
+                )}
 
-          <div className="grid grid-cols-2 gap-3">
-            {finding.claim_a && (
-              <div className="p-3 rounded-lg bg-[var(--color-bg-tertiary)]">
-                <div className="text-xs font-medium text-[var(--color-text-muted)] mb-1">
-                  Claim A
-                </div>
-                <p className="text-xs text-[var(--color-text-secondary)]">
-                  {finding.claim_a.claim_text}
-                </p>
+                {finding.claim_b && (
+                  <div className="flex-1 p-space-md rounded-lg bg-surface-container border border-surface-variant">
+                    <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold mb-space-xs">
+                      Claim B
+                    </div>
+                    <p className="font-body-sm text-body-sm text-on-surface">
+                      {finding.claim_b.claim_text}
+                    </p>
+                    {finding.claim_b.sources && finding.claim_b.sources.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-space-sm">
+                        {finding.claim_b.sources.map((src, i) => (
+                          <span key={i} className="font-code-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container-high text-on-surface-variant">
+                            {src.document_name} · p.{src.page_start}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             )}
-            {finding.claim_b && (
-              <div className="p-3 rounded-lg bg-[var(--color-bg-tertiary)]">
-                <div className="text-xs font-medium text-[var(--color-text-muted)] mb-1">
-                  Claim B
-                </div>
-                <p className="text-xs text-[var(--color-text-secondary)]">
-                  {finding.claim_b.claim_text}
+
+            {/* Uncertainty note */}
+            {finding.uncertainty && (
+              <div className="flex items-start gap-space-xs p-space-sm rounded bg-secondary-fixed">
+                <span className="material-symbols-outlined text-[16px] text-on-secondary-fixed mt-0.5">help</span>
+                <p className="font-body-sm text-body-sm text-on-secondary-fixed">
+                  <span className="font-semibold">Uncertainty:</span> {finding.uncertainty}
                 </p>
               </div>
             )}
           </div>
-
-          {finding.uncertainty && (
-            <p className="text-xs text-[var(--color-warning)] italic">
-              Uncertainty: {finding.uncertainty}
-            </p>
-          )}
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
@@ -107,24 +170,32 @@ export default function ComparisonView() {
   const indexedDocs = documents?.filter((d) => d.processing_status === "indexed") || [];
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-xl font-bold mb-6">Compare Documents</h1>
-
-      <div className="p-5 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)] mb-6">
-        <p className="text-xs text-[var(--color-text-muted)] mb-4">
-          Select two documents to compare their claims and identify potential discrepancies.
-          Claims must be extracted first.
+    <div className="px-space-lg py-space-xl">
+      {/* Header */}
+      <div className="mb-space-xl">
+        <h1 className="font-headline-sm text-headline-sm text-on-surface">
+          Compare Documents
+        </h1>
+        <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Select two documents to compare their claims and identify discrepancies
         </p>
+      </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+      {/* Document selector card */}
+      <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-micro border border-surface-variant mb-space-xl">
+        <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold mb-space-md">
+          Document Selection
+        </div>
+
+        <div className="grid grid-cols-2 gap-space-lg mb-space-lg">
           <div>
-            <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+            <label className="block font-label-md text-label-md text-on-surface-variant mb-space-xs">
               Document A
             </label>
             <select
               value={docA}
               onChange={(e) => setDocA(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-border-primary)] text-sm focus:outline-none focus:border-[var(--color-accent)]"
+              className="w-full bg-surface-container-lowest border border-surface-variant rounded px-space-md py-1.5 text-on-surface font-body-sm text-body-sm outline-none focus:border-primary"
             >
               <option value="">Select document...</option>
               {indexedDocs.map((d) => (
@@ -133,13 +204,13 @@ export default function ComparisonView() {
             </select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-[var(--color-text-muted)] mb-1.5">
+            <label className="block font-label-md text-label-md text-on-surface-variant mb-space-xs">
               Document B
             </label>
             <select
               value={docB}
               onChange={(e) => setDocB(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-border-primary)] text-sm focus:outline-none focus:border-[var(--color-accent)]"
+              className="w-full bg-surface-container-lowest border border-surface-variant rounded px-space-md py-1.5 text-on-surface font-body-sm text-body-sm outline-none focus:border-primary"
             >
               <option value="">Select document...</option>
               {indexedDocs.map((d) => (
@@ -149,56 +220,59 @@ export default function ComparisonView() {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-space-sm">
           <button
             onClick={handleExtractFirst}
             disabled={extractMutation.isPending}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-bg-tertiary)] text-sm hover:bg-[var(--color-bg-hover)] transition-colors"
+            className="inline-flex items-center gap-space-xs bg-surface-container-low px-space-md py-1.5 rounded border border-surface-variant text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md"
           >
             {extractMutation.isPending ? (
-              <Loader2 size={14} className="animate-spin" />
+              <span className="material-symbols-outlined text-[16px] animate-spin">autorenew</span>
             ) : (
-              <FileText size={14} />
+              <span className="material-symbols-outlined text-[16px]">description</span>
             )}
-            Extract Claims First
+            Extract Claims
           </button>
           <button
             onClick={handleCompare}
             disabled={!docA || !docB || docA === docB || compareMutation.isPending}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] disabled:opacity-50 transition-colors"
+            className="inline-flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-1.5 rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-micro disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {compareMutation.isPending ? (
-              <Loader2 size={14} className="animate-spin" />
+              <span className="material-symbols-outlined text-[16px] animate-spin">autorenew</span>
             ) : (
-              <GitCompare size={14} />
+              <span className="material-symbols-outlined text-[16px]">compare_arrows</span>
             )}
             Compare
           </button>
         </div>
       </div>
 
+      {/* Results */}
       {compareMutation.data && (
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 mb-4">
-            <h2 className="text-sm font-semibold">
+        <div>
+          <div className="flex items-center gap-space-sm mb-space-lg">
+            <h2 className="font-title text-title text-on-surface">
               {compareMutation.data.discrepancies.length} Findings
-              <span className="text-xs font-normal text-[var(--color-text-muted)] ml-2">
-                ({compareMutation.data.total_claims_compared} claims compared)
-              </span>
             </h2>
+            <span className="font-code-sm text-code-sm text-on-surface-variant">
+              ({compareMutation.data.total_claims_compared} claims compared)
+            </span>
           </div>
 
           {compareMutation.data.discrepancies.length === 0 ? (
-            <div className="text-center py-8">
-              <CheckCircle2 size={32} className="mx-auto mb-2 text-[var(--color-success)]" />
-              <p className="text-sm text-[var(--color-text-muted)]">
+            <div className="flex flex-col items-center justify-center py-16">
+              <span className="material-symbols-outlined text-[48px] text-tertiary mb-space-md">verified</span>
+              <p className="font-body-md text-body-md text-on-surface-variant text-center">
                 No discrepancies found between these documents.
               </p>
             </div>
           ) : (
-            compareMutation.data.discrepancies.map((f, i) => (
-              <FindingCard key={i} finding={f} />
-            ))
+            <div className="space-y-space-md">
+              {compareMutation.data.discrepancies.map((f, i) => (
+                <FindingCard key={i} finding={f} />
+              ))}
+            </div>
           )}
         </div>
       )}

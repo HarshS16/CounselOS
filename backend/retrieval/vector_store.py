@@ -97,7 +97,7 @@ class VectorStore:
     def save(self, path: Path) -> None:
         import faiss
 
-        path.parent.mkdir(parents=True, exist_ok=True)
+        path.mkdir(parents=True, exist_ok=True)
         faiss.write_index(self._index, str(path / "index.faiss"))
         mapping = {
             "id_to_pos": self._id_to_pos,

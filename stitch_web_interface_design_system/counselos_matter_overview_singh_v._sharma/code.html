@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-on-surface":"#f7efeb","surface-container":"#f4ece8","primary-fixed-dim":"#c3c0ff","on-error-container":"#93000a","outline-variant":"#c7c4d8","outline":"#777587","surface-dim":"#e0d8d5","surface-container-low":"#faf2ee","on-error":"#ffffff","inverse-primary":"#c3c0ff","on-tertiary-container":"#8df09f","surface-variant":"#e9e1dd","tertiary-container":"#006f31","primary-fixed":"#e2dfff","background":"#fff8f5","surface-tint":"#4d44e3","on-secondary-container":"#fffbff","tertiary":"#005424","on-primary":"#ffffff","secondary":"#1d4ed8","on-tertiary-fixed":"#00210a","on-primary-fixed":"#0f0069","secondary-container":"#4069f2","on-secondary-fixed":"#001551","surface-container-highest":"#e9e1dd","error-container":"#ffdad6","primary":"#3525cd","on-surface":"#1e1b19","surface-container-high":"#eee7e3","on-surface-variant":"#464555","tertiary-fixed-dim":"#79db8d","tertiary-fixed":"#95f8a7","on-tertiary":"#ffffff","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#0039b5","surface":"#fff8f5","on-primary-container":"#dad7ff","surface-bright":"#fff8f5","on-tertiary-fixed-variant":"#005323","on-primary-fixed-variant":"#3323cc","secondary-fixed-dim":"#b7c4ff","primary-container":"#4f46e5","on-secondary":"#ffffff","secondary-fixed":"#dce1ff","on-background":"#1e1b19","inverse-surface":"#33302d"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"0.75rem","margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem","space-lg":"1rem","gutter":"1rem"},"fontFamily":{"headline-lg":["\"Source Serif 4\""],"headline-sm":["\"Source Serif 4\""],"body-sm":["Inter"],"body-md":["Inter"],"title":["Inter"],"headline-md":["\"Source Serif 4\""],"body-lg":["Inter"],"code-md":["JetBrains Mono"],"label-sm":["Inter"],"label-md":["Inter"],"code-sm":["JetBrains Mono"],"display":["\"Source Serif 4\""]},"fontSize":{"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22.4px","fontWeight":"400"}],"title":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"24px","fontWeight":"400"}],"code-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"display":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased select-none"><aside class="fixed left-0 top-0 bottom-0 w-[260px] bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col h-full overflow-hidden"><div class="p-space-lg flex flex-col gap-space-sm bg-surface-container-lowest"><div class="flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="CounselOS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WNOuRMdjXtPFTA_DaRt2DHv93IkT0-zhrUVK-qi5JpiYM7IDDbjsynWDe2HVYYnAr6OPytbItBxnCtFnB1702TnL0Gjz8MEPkqeocrnqGNFjiibAn7fCwkfPVZ7Jbrsy-n91FDi-YJV4f9voMPvdznCpT3xhYOm-Xr1UJZ9hWqZgpeS94XwV82ZE-XLF-kQ0Tug-VxdYwjt353itNWyWI3ihAco1t-DfUGOUjRt1pRAg"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">CounselOS</span></div><span class="font-code-sm text-code-sm bg-surface-container text-tertiary px-space-xs py-0.5 rounded font-semibold">v2.0</span></div><div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg self-start"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span class="font-code-sm text-code-sm text-tertiary tracking-wider font-semibold">LOCAL · SECURE</span></div></div><div class="px-space-md py-space-sm bg-surface-container border-t border-b border-surface-variant flex items-center justify-between cursor-pointer hover:bg-surface-container-high transition-colors"><div class="flex flex-col min-w-0 pr-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Matter</span><span class="font-title text-[13px] leading-tight text-on-surface truncate">Singh v. Sharma</span><span class="font-code-sm text-[10px] leading-none text-on-surface-variant truncate mt-0.5">REF-2024-0145 · Delhi HC</span></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">unfold_more</span></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md flex flex-col gap-space-lg"><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Input &amp; Search</div><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 rounded transition-colors bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]" data-path="overview" href="#"><span class="font-body-sm text-body-sm">Overview</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documents" href="#"><span class="font-body-sm text-body-sm">Documents</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">14</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="search-ask" href="#"><span class="font-body-sm text-body-sm">Search &amp; Ask</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Analysis</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="font-body-sm text-body-sm">Claims</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">47</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="entities" href="#"><span class="font-body-sm text-body-sm">Entities</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="chronology" href="#"><span class="font-body-sm text-body-sm">Chronology</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">12</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="compare" href="#"><span class="font-body-sm text-body-sm">Compare</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="findings" href="#"><span class="font-body-sm text-body-sm">Findings</span><span class="font-code-sm text-[10px] leading-tight bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded font-semibold">3 pending</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Case Work</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="arguments-builder" href="#"><span class="font-body-sm text-body-sm">Arguments Builder</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="case-diary" href="#"><span class="font-body-sm text-body-sm">Case Diary</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="hearings" href="#"><span class="font-body-sm text-body-sm">Hearings</span><span class="font-code-sm text-[10px] leading-tight bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-semibold">4 Nov</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tasks" href="#"><span class="font-body-sm text-body-sm">Tasks</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">5 open</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="witnesses" href="#"><span class="font-body-sm text-body-sm">Witnesses</span></a></nav></div><div class="p-space-sm bg-surface-container-lowest border-t border-surface-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant"><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Quick Export" type="button"><span class="material-symbols-outlined text-[18px]">download</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Settings" type="button"><span class="material-symbols-outlined text-[18px]">settings</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle Theme" type="button"><span class="material-symbols-outlined text-[18px]">light_mode</span></button></div><div class="flex items-center gap-space-sm pt-space-xs border-t border-surface-variant"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsVZfus7n0s6QXBQFPxuBSNhJmave2WwsBITQzk3PyXmlHO__FuSWiQr3FMjT54krPTFUj6mIlbfctNZk_va-9ugyfxye9bGUVXPC1NCw4bBWY5OhLuaVzYe56qsI2yNgROsrewywGUwG1oxM77rwR3kk6TQTSnt3lqiO-XmcvF5Vti8pnCgMUlP6jmCdlPRLzVplrshQc9jamfEsScmiWMIwLR_LVAGjw0OPTceVa"/><div class="flex flex-col min-w-0"><span class="font-title text-[12px] leading-tight text-on-surface truncate">Adv. Rajesh Sharma</span><span class="font-body-sm text-[10px] leading-none text-on-surface-variant truncate">Lead Counsel</span></div></div></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-14 bg-surface-container-lowest z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5"><button aria-label="Close" class="w-3 h-3 rounded-full bg-error hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Minimize" class="w-3 h-3 rounded-full bg-[#f59e0b] hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Maximize" class="w-3 h-3 rounded-full bg-[#10b981] hover:opacity-80 transition-opacity" type="button"></button></div><div class="flex items-center gap-space-xs text-on-surface-variant text-label-md"><span class="material-symbols-outlined text-[16px]">gavel</span><span class="font-body-sm text-body-sm text-on-surface-variant">Tauri Desktop · Session Active</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center justify-between gap-space-lg bg-surface-container-low px-space-md py-1.5 rounded border border-surface-variant text-on-surface-variant hover:text-on-surface hover:border-outline transition-colors w-72" type="button"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm truncate">Search matter facts...</span></div><kbd class="font-code-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container border border-surface-variant text-on-surface-variant">Ctrl+K</kbd></button><div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-tertiary font-code-sm text-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span><span>LOCAL ONLY</span></div><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-1.5 rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-[0_1px_2px_rgba(28,25,23,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">add</span><span>New Matter</span></button></div></header><main class="relative pt-14 w-full px-space-lg min-h-screen bg-background"><div class="flex flex-col w-full">
+<div class="w-full pb-12 flex flex-col gap-space-lg">
+<!-- Top Metadata Header Block -->
+<div class="w-full bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+<span class="hover:text-primary cursor-pointer transition-colors">Matters Docket</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface">Civil Original Jurisdiction</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Singh v. Sharma</span>
+</div>
+<div class="flex items-baseline gap-space-md flex-wrap">
+<h1 class="font-display text-display text-on-surface tracking-tight">Singh v. Sharma</h1>
+<span class="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant font-medium">CS(OS) 412/2024</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Suit for Specific Performance under Section 16(c), Specific Relief Act, 1963 · Filed: 15 Mar 2024
+          </p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">edit_note</span>
+<span>Edit Details</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">archive</span>
+<span>Archive Matter</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
+<span>Generate Composite Report</span>
+</button>
+</div>
+</div>
+<!-- Quick Docket Badges -->
+<div class="flex items-center gap-space-sm flex-wrap pt-space-xs border-t-0">
+<div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-on-surface font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">tag</span>
+<span>REF-2024-0145</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-on-surface font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant">balance</span>
+<span>Delhi High Court (Room 24)</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-on-surface font-code-sm text-code-sm">
+<span class="material-symbols-outlined text-[14px] text-tertiary">lock</span>
+<span>SHA-256 Validated</span>
+</div>
+<div class="flex items-center gap-1.5 bg-error-container px-space-sm py-1 rounded text-on-error-container font-code-sm text-code-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">event_upcoming</span>
+<span>Next Date: 04 Nov 2026</span>
+</div>
+<div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-on-surface font-code-sm text-code-sm ml-auto">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+<span>Workstation Vault: 4.2 GB Local</span>
+</div>
+</div>
+</div>
+<!-- Critical Hearing Callout Banner -->
+<div class="w-full bg-surface-container-high rounded-xl p-space-lg shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-space-lg relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-2 bg-error"></div>
+<div class="flex items-start gap-space-md pl-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 shadow-sm text-error">
+<span class="material-symbols-outlined text-[24px]">gavel</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs flex-wrap">
+<span class="font-label-md text-label-md uppercase tracking-wider text-error font-bold">Impending Hearing</span>
+<span class="font-code-sm text-code-sm bg-surface-container-lowest px-2 py-0.5 rounded text-on-surface font-semibold shadow-sm">In 4 Days</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">04 November 2026 · 10:30 AM IST</span>
+</div>
+<div class="font-headline-sm text-headline-sm text-on-surface">
+            Final Arguments: Maintainability of Suit under Specific Relief Act (Sec 16(c))
+          </div>
+<div class="flex items-center gap-space-md flex-wrap text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">account_balance</span>
+              Delhi High Court, Courtroom 24
+            </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">person</span>
+              Before: Hon'ble Justice P.K. Verma
+            </span>
+</div>
+<p class="font-code-sm text-code-sm text-on-surface mt-1 bg-surface-container-lowest px-2.5 py-1 rounded inline-block shadow-sm">
+            Critical Directive: Carry certified physical copies of Exhibit A through D. Limitation rebuttal note prepared.
+          </p>
+</div>
+</div>
+<div class="flex md:flex-col items-center md:items-end gap-space-xs shrink-0 self-stretch justify-center">
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm flex items-center gap-1.5 whitespace-nowrap" type="button">
+<span class="material-symbols-outlined text-[16px]">menu_book</span>
+<span>Open Arg Sheet</span>
+</button>
+<span class="font-code-sm text-[10px] text-on-surface-variant">Listing Item #14 (Regular Bench)</span>
+</div>
+</div>
+<!-- Case Status Interactive Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Metric 1: Documents -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Indexed Records</span>
+<span class="font-display text-display text-on-surface mt-1">14</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">folder_open</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex flex-col gap-1.5">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 85%;"></div>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>12 OCR Ready</span>
+<span class="text-secondary font-medium">2 In Deep OCR</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Claims -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Extracted Claims</span>
+<span class="font-display text-display text-on-surface mt-1">47</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-tertiary group-hover:bg-tertiary-container group-hover:text-on-tertiary-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex flex-col gap-1.5">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-tertiary-container h-full rounded-full" style="width: 80%;"></div>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span class="text-tertiary font-medium">38 Verified</span>
+<span class="text-error font-medium">5 Unreviewed</span>
+</div>
+</div>
+</div>
+<!-- Metric 3: Chronology -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Chronology Events</span>
+<span class="font-display text-display text-on-surface mt-1">12</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_view_day</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex flex-col gap-1.5">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary-container h-full rounded-full" style="width: 83%;"></div>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span>10 Corroborated</span>
+<span class="text-error font-medium">2 Date Flags</span>
+</div>
+</div>
+</div>
+<!-- Metric 4: Review Findings -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col justify-between group">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Pending Findings</span>
+<span class="font-display text-display text-error mt-1">3</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-error-container flex items-center justify-center text-on-error-container group-hover:bg-error group-hover:text-on-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex flex-col gap-1.5">
+<div class="w-full bg-surface-container h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex items-center justify-between font-code-sm text-code-sm text-on-surface-variant">
+<span class="text-error font-medium">3 Contradictions</span>
+<span>Requires Action</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Parties & Counsel Comparison Panel -->
+<div class="w-full flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Litigants &amp; Standing Counsel</span>
+<span class="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant">Parties of Record</span>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Vakalatnama Stamped &amp; Accepted</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-md">
+<!-- Plaintiff Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex gap-space-md items-center">
+<div class="w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center font-display text-headline-sm shrink-0 shadow-sm">
+                AS
+              </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-primary-fixed text-on-primary-fixed px-2 py-0.5 rounded font-semibold uppercase">Petitioner / Plaintiff</span>
+<span class="font-code-sm text-code-sm text-tertiary">Verified Identity</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate mt-0.5">Arun Singh</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Managing Director, Apex Infra Developers Pvt. Ltd.</span>
+</div>
+</div>
+<span class="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant shrink-0">Party No. 1</span>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Appearing Representation</span>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title text-title text-on-surface">Adv. Rajesh Sharma &amp; Associates</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Advocate-on-Record: Vikas Sen (D/4182/2012)</span>
+</div>
+<span class="font-code-sm text-code-sm bg-surface-container text-primary font-semibold px-2 py-1 rounded">Our Brief</span>
+</div>
+<div class="flex items-center gap-space-md font-code-sm text-code-sm text-on-surface-variant pt-1">
+<span>Chambers: 304, Lawyers Block C, Delhi HC</span>
+<span>•</span>
+<span>+91 98110 44219</span>
+</div>
+</div>
+</div>
+<!-- Defendant Card -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md relative overflow-hidden">
+<div class="flex items-start justify-between gap-space-md">
+<div class="flex gap-space-md items-center">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center font-display text-headline-sm shrink-0 shadow-sm">
+                VS
+              </div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-surface px-2 py-0.5 rounded font-semibold uppercase">Respondent / Defendant</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Notice Served</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface truncate mt-0.5">Vikram Sharma</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Director, Horizon Builders &amp; Promoters LLP</span>
+</div>
+</div>
+<span class="font-code-sm text-code-sm bg-surface-container px-2 py-0.5 rounded text-on-surface-variant shrink-0">Party No. 2</span>
+</div>
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-2">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Opposing Representation</span>
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title text-title text-on-surface">Adv. Neha Gupta</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Chambers of Senior Adv. D. Mehra</span>
+</div>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant font-medium px-2 py-1 rounded">Respondent Lead</span>
+</div>
+<div class="flex items-center gap-space-md font-code-sm text-code-sm text-on-surface-variant pt-1">
+<span>Bar Library II, Supreme Court Annex</span>
+<span>•</span>
+<span>+91 94120 88123</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Actions Bento Grid -->
+<div class="w-full flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-semibold">Procedural Workbenches</span>
+<span class="font-code-sm text-code-sm text-tertiary">All Models Ready Offline</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1 -->
+<a class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all flex flex-col justify-between gap-space-md group" href="#">
+<div class="flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[22px]">smart_toy</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-2">Search &amp; Ask AI</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Query across 14 case bundles with verbatim source page citations.</p>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-primary font-semibold pt-space-xs">
+<span>Query Bundles</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 2 -->
+<a class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all flex flex-col justify-between gap-space-md group" href="#">
+<div class="flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors">
+<span class="material-symbols-outlined text-[22px]">compare</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-secondary transition-colors mt-2">Compare Documents</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Detect date and monetary contradictions between Plaint and Written Statement.</p>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-secondary font-semibold pt-space-xs">
+<span>Run Comparison</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 3 -->
+<a class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all flex flex-col justify-between gap-space-md group" href="#">
+<div class="flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-tertiary group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors">
+<span class="material-symbols-outlined text-[22px]">timeline</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-tertiary transition-colors mt-2">Build Chronology</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review extracted chronological timeline of execution and legal notices.</p>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-tertiary font-semibold pt-space-xs">
+<span>Inspect Timeline</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+</a>
+<!-- Card 4 -->
+<a class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm hover:shadow-md hover:bg-surface-container-low transition-all flex flex-col justify-between gap-space-md group" href="#">
+<div class="flex flex-col gap-space-xs">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-on-surface group-hover:bg-inverse-surface group-hover:text-inverse-on-surface transition-colors">
+<span class="material-symbols-outlined text-[22px]">print</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mt-2">Export Case Brief</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Compile ready-to-print court briefs in court standard DOCX and PDF.</p>
+</div>
+<div class="flex items-center gap-1 font-label-md text-label-md text-on-surface font-semibold pt-space-xs">
+<span>Export Document</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Split Panel: Chronology Visual & Activity Stream -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-space-md">
+<!-- Key Case Evidence Insights (2 Columns) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-primary">verified_user</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Active Admissibility &amp; Evidentiary Health</h3>
+</div>
+<span class="font-code-sm text-code-sm bg-surface-container text-tertiary px-2 py-0.5 rounded font-semibold">Integrity: 98.4%</span>
+</div>
+<!-- Inline SVG Visualization: Evidence Readiness Index -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex flex-col gap-space-sm">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase font-semibold">
+<span>Evidence Bundle Verification Breakdown</span>
+<span>14 Exhibits Total</span>
+</div>
+<!-- SVG Bar Visualizer -->
+<div class="w-full flex flex-col gap-2">
+<svg class="w-full h-8 rounded" preserveaspectratio="none" viewbox="0 0 600 24">
+<!-- Verified Primary Deeds -->
+<rect fill="#006f31" height="24" rx="2" width="340" x="0" y="0"></rect>
+<!-- Bank & Financial Records -->
+<rect fill="#1d4ed8" height="24" rx="2" width="160" x="344" y="0"></rect>
+<!-- Disputed Notices -->
+<rect fill="#ba1a1a" height="24" rx="2" width="56" x="508" y="0"></rect>
+<!-- Pending OCR -->
+<rect fill="#c7c4d8" height="24" rx="2" width="32" x="568" y="0"></rect>
+</svg>
+<div class="flex items-center justify-between text-on-surface-variant font-code-sm text-[11px] flex-wrap gap-2">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-tertiary-container"></span> Agreement to Sell &amp; Receipts (56%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span> RTGS Bank Proofs (27%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-error"></span> Flagged Notices (9%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-outline-variant"></span> Processing (8%)</span>
+</div>
+</div>
+</div>
+<!-- Discrepancy Callouts List -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Urgent Judicial Issues Detected</span>
+<div class="p-space-md bg-surface-container rounded-lg flex items-start gap-space-md">
+<span class="material-symbols-outlined text-[20px] text-error shrink-0 mt-0.5">priority_high</span>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-title text-[13px] text-on-surface">Cheque Realisation vs Date of Notice</span>
+<span class="font-code-sm text-[10px] bg-error-container text-on-error-container px-1.5 py-0.2 rounded font-semibold">P-4 vs D-2</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Plaint asserts full payment of ₹1.5 Cr earnest advance on 15 Feb 2024. Written Statement Exhibit D-2 bank scroll reflects clearance only on 22 Feb 2024.
+              </p>
+</div>
+</div>
+<div class="p-space-md bg-surface-container rounded-lg flex items-start gap-space-md">
+<span class="material-symbols-outlined text-[20px] text-secondary shrink-0 mt-0.5">help_outline</span>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-title text-[13px] text-on-surface">Willingness and Readiness Requisite (Sec 16(c))</span>
+<span class="font-code-sm text-[10px] bg-surface-container-high text-on-surface px-1.5 py-0.2 rounded font-semibold">Mandatory Proviso</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Requires proof of solvency from 15 Mar 2024 through current listing date. Corroborated bank certificate added to Exhibit C bundle.
+              </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Matter Activity & Notes (1 Column) -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">history</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Matter Activity</h3>
+</div>
+<span class="font-code-sm text-code-sm text-primary hover:underline cursor-pointer">View Audit Log</span>
+</div>
+<!-- Activity List -->
+<div class="flex flex-col gap-space-md relative">
+<!-- Timeline item 1 -->
+<div class="flex items-start gap-space-sm relative">
+<div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">upload_file</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-title text-[13px] text-on-surface truncate">Uploaded Exhibit C</span>
+<span class="font-code-sm text-[10px] text-on-surface-variant shrink-0">2h ago</span>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant truncate">Exhibit_C_Bank_Statement.pdf</span>
+<span class="font-code-sm text-[10px] text-tertiary">SHA-256: 8f9b4c... verified</span>
+</div>
+</div>
+<!-- Timeline item 2 -->
+<div class="flex items-start gap-space-sm relative">
+<div class="w-7 h-7 rounded-full bg-tertiary text-on-tertiary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">done_all</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-title text-[13px] text-on-surface truncate">Corroborated 3 Findings</span>
+<span class="font-code-sm text-[10px] text-on-surface-variant shrink-0">Yesterday</span>
+</div>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Accepted execution date corroboration for 15 Mar 2023 Agreement to Sell</span>
+</div>
+</div>
+<!-- Timeline item 3 -->
+<div class="flex items-start gap-space-sm relative">
+<div class="w-7 h-7 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px]">auto_graph</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-baseline justify-between gap-2">
+<span class="font-title text-[13px] text-on-surface truncate">Matrix Built</span>
+<span class="font-code-sm text-[10px] text-on-surface-variant shrink-0">2d ago</span>
+</div>
+<span class="font-body-sm text-[12px] text-on-surface-variant">Automated chronology matrix completed with 12 tagged key milestones</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Chamber Note Box -->
+<div class="p-space-sm bg-surface-container rounded-lg flex flex-col gap-1">
+<div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm uppercase font-semibold">
+<span>Chambers Internal Memo</span>
+<span class="material-symbols-outlined text-[14px]">lock</span>
+</div>
+<p class="font-body-sm text-[12px] text-on-surface italic">
+            "Senior Adv. Mehra to appear for Sharma. Prepare rejoinder highlighting lack of prompt denial to notice dated 10 Jan 2024."
+          </p>
+<span class="font-code-sm text-[10px] text-on-surface-variant self-end">— Adv. Rajesh Sharma, 28 Oct</span>
+</div>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

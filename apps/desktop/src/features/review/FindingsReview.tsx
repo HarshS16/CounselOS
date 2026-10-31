@@ -1,13 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  AlertTriangle,
-  CheckCircle2,
-  XCircle,
-  HelpCircle,
-  MessageSquare,
-  Filter,
-} from "lucide-react";
 import { useFindings, useReviewFinding } from "@/hooks/useApi";
 import { clsx } from "clsx";
 import { format } from "date-fns";
@@ -25,13 +17,21 @@ const reviewStatuses = [
 ];
 
 const statusColors: Record<string, string> = {
-  pending: "var(--color-warning)",
-  accepted: "var(--color-success)",
-  rejected: "var(--color-danger)",
-  needs_evidence: "var(--color-info)",
-  ambiguous: "var(--color-warning)",
-  corrected: "var(--color-accent)",
-  irrelevant: "var(--color-text-muted)",
+  pending: "bg-secondary-fixed text-on-secondary-fixed",
+  accepted: "bg-tertiary-fixed text-on-tertiary-fixed",
+  rejected: "bg-error-container text-on-error-container",
+  needs_evidence: "bg-primary-fixed text-on-primary-fixed",
+  ambiguous: "bg-secondary-fixed text-on-secondary-fixed",
+  corrected: "bg-tertiary-fixed text-on-tertiary-fixed",
+  irrelevant: "bg-surface-container-high text-on-surface-variant",
+};
+
+const typeColors: Record<string, string> = {
+  contradiction: "bg-error-container text-on-error-container",
+  consistency: "bg-tertiary-fixed text-on-tertiary-fixed",
+  claim: "bg-primary-fixed text-on-primary-fixed",
+  entity: "bg-secondary-fixed text-on-secondary-fixed",
+  timeline: "bg-secondary-fixed text-on-secondary-fixed",
 };
 
 function FindingCard({ finding, matterId }: { finding: Finding; matterId: string }) {
@@ -47,83 +47,78 @@ function FindingCard({ finding, matterId }: { finding: Finding; matterId: string
     setShowReview(false);
   };
 
-  const color = statusColors[finding.review_status] || "var(--color-text-muted)";
+  const typeBadge = typeColors[finding.finding_type] || "bg-surface-container-high text-on-surface-variant";
+  const statusBadge = statusColors[finding.review_status] || "bg-surface-container-high text-on-surface-variant";
 
   return (
-    <div className="p-5 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)]">
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <span
-            className="text-xs px-2 py-0.5 rounded font-medium capitalize"
-            style={{ color, backgroundColor: `color-mix(in srgb, ${color} 12%, transparent)` }}
-          >
+    <div className="bg-surface-container-lowest p-space-lg rounded-xl shadow-micro">
+      <div className="flex items-start justify-between mb-space-md">
+        <div className="flex items-center gap-space-sm">
+          <span className={clsx("font-code-sm text-[11px] px-2 py-0.5 rounded font-medium capitalize", typeBadge)}>
             {finding.finding_type.replace(/_/g, " ")}
           </span>
-          <span
-            className="text-xs px-2 py-0.5 rounded capitalize"
-            style={{ color, backgroundColor: `color-mix(in srgb, ${color} 8%, transparent)` }}
-          >
+          <span className={clsx("font-code-sm text-[11px] px-2 py-0.5 rounded font-medium capitalize", statusBadge)}>
             {finding.review_status}
           </span>
         </div>
-        <span className="text-xs text-[var(--color-text-muted)]">
+        <span className="font-code-sm text-code-sm text-on-surface-variant">
           {format(new Date(finding.created_at), "dd MMM yyyy HH:mm")}
         </span>
       </div>
 
-      <h3 className="text-sm font-medium mb-2">{finding.summary}</h3>
+      <h3 className="font-title text-[14px] text-on-surface mb-space-sm">{finding.summary}</h3>
 
       {finding.explanation && (
-        <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed mb-3">
+        <p className="font-body-sm text-body-sm text-on-surface-variant leading-relaxed mb-space-md">
           {finding.explanation}
         </p>
       )}
 
       {finding.reviewer_note && (
-        <div className="p-2 rounded-lg bg-[var(--color-bg-tertiary)] mb-3">
-          <div className="flex items-center gap-1 text-xs text-[var(--color-text-muted)] mb-1">
-            <MessageSquare size={10} />
+        <div className="p-space-sm rounded-lg bg-surface-container-low mb-space-md">
+          <div className="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant mb-1">
+            <span className="material-symbols-outlined text-[12px]">comment</span>
             Reviewer Note
           </div>
-          <p className="text-xs text-[var(--color-text-secondary)]">{finding.reviewer_note}</p>
+          <p className="font-body-sm text-body-sm text-on-surface-variant">{finding.reviewer_note}</p>
         </div>
       )}
 
-      <div className="flex items-center gap-2">
-        <button
-          onClick={() => setShowReview(!showReview)}
-          className="text-xs text-[var(--color-accent)] hover:underline"
-        >
-          {showReview ? "Cancel" : "Review"}
-        </button>
-      </div>
+      <button
+        onClick={() => setShowReview(!showReview)}
+        className="font-label-md text-label-md text-primary hover:text-primary-container transition-colors"
+      >
+        {showReview ? "Cancel" : "Review"}
+      </button>
 
       {showReview && (
-        <div className="mt-3 pt-3 border-t border-[var(--color-border-primary)]">
+        <div className="mt-space-md pt-space-md border-t border-surface-variant">
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
             placeholder="Optional reviewer note..."
             rows={2}
-            className="w-full px-3 py-2 rounded-lg bg-[var(--color-bg-tertiary)] border border-[var(--color-border-primary)] text-xs mb-2 focus:outline-none focus:border-[var(--color-accent)]"
+            className="w-full bg-surface-container-lowest border border-surface-variant rounded px-space-md py-1.5 text-on-surface font-body-sm text-body-sm outline-none focus:border-primary mb-space-md resize-none"
           />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-space-sm">
             {[
-              { value: "accepted", label: "Accept", icon: CheckCircle2, color: "var(--color-success)" },
-              { value: "rejected", label: "Reject", icon: XCircle, color: "var(--color-danger)" },
-              { value: "needs_evidence", label: "Needs Evidence", icon: HelpCircle, color: "var(--color-info)" },
-              { value: "ambiguous", label: "Ambiguous", icon: HelpCircle, color: "var(--color-warning)" },
-              { value: "corrected", label: "Corrected", icon: CheckCircle2, color: "var(--color-accent)" },
-              { value: "irrelevant", label: "Irrelevant", icon: XCircle, color: "var(--color-text-muted)" },
-            ].map(({ value, label, icon: Icon, color: c }) => (
+              { value: "accepted", label: "Accept", icon: "check_circle", colors: "bg-tertiary-fixed text-on-tertiary-fixed" },
+              { value: "rejected", label: "Reject", icon: "cancel", colors: "bg-error-container text-on-error-container" },
+              { value: "needs_evidence", label: "Needs Evidence", icon: "help", colors: "bg-primary-fixed text-on-primary-fixed" },
+              { value: "ambiguous", label: "Ambiguous", icon: "help", colors: "bg-secondary-fixed text-on-secondary-fixed" },
+              { value: "corrected", label: "Corrected", icon: "check_circle", colors: "bg-tertiary-fixed text-on-tertiary-fixed" },
+              { value: "irrelevant", label: "Irrelevant", icon: "cancel", colors: "bg-surface-container-high text-on-surface-variant" },
+            ].map(({ value, label, icon, colors }) => (
               <button
                 key={value}
                 onClick={() => handleReview(value)}
                 disabled={reviewMutation.isPending}
-                className="flex items-center gap-1 px-2.5 py-1.5 rounded text-xs transition-colors hover:opacity-80"
-                style={{ color: c, backgroundColor: `color-mix(in srgb, ${c} 10%, transparent)` }}
+                className={clsx(
+                  "flex items-center gap-space-xs font-code-sm text-[11px] px-2.5 py-1 rounded font-medium cursor-pointer hover:opacity-80 transition-opacity",
+                  colors
+                )}
               >
-                <Icon size={12} />
+                <span className="material-symbols-outlined text-[14px]">{icon}</span>
                 {label}
               </button>
             ))}
@@ -145,49 +140,54 @@ export default function FindingsReview() {
   const pendingCount = findings?.filter((f) => f.review_status === "pending").length || 0;
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h1 className="text-xl font-bold">Findings Review</h1>
+    <div className="px-space-lg py-space-xl max-w-4xl mx-auto">
+      <div className="flex items-center justify-between mb-space-lg">
+        <div className="flex items-center gap-space-md">
+          <h1 className="font-headline-sm text-headline-sm text-on-surface">Findings Review</h1>
           {pendingCount > 0 && (
-            <p className="text-xs text-[var(--color-warning)] mt-1">
-              {pendingCount} findings pending review
-            </p>
+            <span className="font-code-sm text-[11px] px-2 py-0.5 rounded font-medium bg-secondary-fixed text-on-secondary-fixed">
+              {pendingCount} pending
+            </span>
           )}
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
-        <Filter size={14} className="text-[var(--color-text-muted)] flex-shrink-0" />
-        {reviewStatuses.map(({ value, label }) => (
-          <button
-            key={value}
-            onClick={() => setStatusFilter(value)}
-            className={clsx(
-              "px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors",
-              statusFilter === value
-                ? "bg-[var(--color-accent)] text-white"
-                : "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)]"
-            )}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="flex items-center gap-space-sm mb-space-lg">
+        <span className="material-symbols-outlined text-[16px] text-on-surface-variant">filter_list</span>
+        <div className="bg-surface-container-low p-1 rounded-lg flex items-center gap-0.5 overflow-x-auto">
+          {reviewStatuses.map(({ value, label }) => (
+            <button
+              key={value}
+              onClick={() => setStatusFilter(value)}
+              className={clsx(
+                "px-space-md py-1 rounded font-label-md text-label-md whitespace-nowrap transition-all",
+                statusFilter === value
+                  ? "bg-surface-container-lowest text-primary shadow-micro font-semibold"
+                  : "text-on-surface-variant hover:text-on-surface"
+              )}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {isLoading ? (
-        <div className="text-center text-[var(--color-text-muted)] py-8">Loading...</div>
+        <div className="flex items-center justify-center py-16 text-on-surface-variant">
+          <span className="material-symbols-outlined text-[20px] animate-spin mr-space-sm">autorenew</span>
+          <span className="font-body-sm text-body-sm">Loading findings...</span>
+        </div>
       ) : !findings?.length ? (
-        <div className="text-center py-16">
-          <AlertTriangle size={40} className="mx-auto mb-3 text-[var(--color-text-muted)] opacity-50" />
-          <p className="text-sm text-[var(--color-text-muted)]">
+        <div className="flex flex-col items-center justify-center py-16 text-center">
+          <span className="material-symbols-outlined text-[40px] text-outline mb-space-md">notification_important</span>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-md">
             {statusFilter === "all"
               ? "No findings yet. Run a comparison or extraction to generate findings."
               : `No findings with status "${statusFilter}".`}
           </p>
         </div>
       ) : (
-        <div className="space-y-3">
+        <div className="flex flex-col gap-space-md">
           {findings.map((finding) => (
             <FindingCard key={finding.id} finding={finding} matterId={matterId!} />
           ))}

@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-on-surface":"#f7efeb","surface-container":"#f4ece8","primary-fixed-dim":"#c3c0ff","on-error-container":"#93000a","outline-variant":"#c7c4d8","outline":"#777587","surface-dim":"#e0d8d5","surface-container-low":"#faf2ee","on-error":"#ffffff","inverse-primary":"#c3c0ff","on-tertiary-container":"#8df09f","surface-variant":"#e9e1dd","tertiary-container":"#006f31","primary-fixed":"#e2dfff","background":"#fff8f5","surface-tint":"#4d44e3","on-secondary-container":"#fffbff","tertiary":"#005424","on-primary":"#ffffff","secondary":"#1d4ed8","on-tertiary-fixed":"#00210a","on-primary-fixed":"#0f0069","secondary-container":"#4069f2","on-secondary-fixed":"#001551","surface-container-highest":"#e9e1dd","error-container":"#ffdad6","primary":"#3525cd","on-surface":"#1e1b19","surface-container-high":"#eee7e3","on-surface-variant":"#464555","tertiary-fixed-dim":"#79db8d","tertiary-fixed":"#95f8a7","on-tertiary":"#ffffff","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#0039b5","surface":"#fff8f5","on-primary-container":"#dad7ff","surface-bright":"#fff8f5","on-tertiary-fixed-variant":"#005323","on-primary-fixed-variant":"#3323cc","secondary-fixed-dim":"#b7c4ff","primary-container":"#4f46e5","on-secondary":"#ffffff","secondary-fixed":"#dce1ff","on-background":"#1e1b19","inverse-surface":"#33302d"},"borderRadius":{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},"spacing":{"space-md":"0.75rem","margin":"1.25rem","space-xs":"0.25rem","space-sm":"0.5rem","space-xl":"1.5rem","space-lg":"1rem","gutter":"1rem"},"fontFamily":{"headline-lg":["\"Source Serif 4\""],"headline-sm":["\"Source Serif 4\""],"body-sm":["Inter"],"body-md":["Inter"],"title":["Inter"],"headline-md":["\"Source Serif 4\""],"body-lg":["Inter"],"code-md":["JetBrains Mono"],"label-sm":["Inter"],"label-md":["Inter"],"code-sm":["JetBrains Mono"],"display":["\"Source Serif 4\""]},"fontSize":{"headline-lg":["26px",{"lineHeight":"34px","letterSpacing":"-0.015em","fontWeight":"600"}],"headline-sm":["18px",{"lineHeight":"26px","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"20px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"22.4px","fontWeight":"400"}],"title":["16px",{"lineHeight":"24px","fontWeight":"600"}],"headline-md":["22px",{"lineHeight":"30px","letterSpacing":"-0.01em","fontWeight":"600"}],"body-lg":["15px",{"lineHeight":"24px","fontWeight":"400"}],"code-md":["13px",{"lineHeight":"18px","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"600"}],"code-sm":["11px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"display":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased select-none"><aside class="fixed left-0 top-0 bottom-0 w-[260px] bg-surface-container-low z-50 flex flex-col justify-between shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col h-full overflow-hidden"><div class="p-space-lg flex flex-col gap-space-sm bg-surface-container-lowest"><div class="flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="CounselOS Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WNOuRMdjXtPFTA_DaRt2DHv93IkT0-zhrUVK-qi5JpiYM7IDDbjsynWDe2HVYYnAr6OPytbItBxnCtFnB1702TnL0Gjz8MEPkqeocrnqGNFjiibAn7fCwkfPVZ7Jbrsy-n91FDi-YJV4f9voMPvdznCpT3xhYOm-Xr1UJZ9hWqZgpeS94XwV82ZE-XLF-kQ0Tug-VxdYwjt353itNWyWI3ihAco1t-DfUGOUjRt1pRAg"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">CounselOS</span></div><span class="font-code-sm text-code-sm bg-surface-container text-tertiary px-space-xs py-0.5 rounded font-semibold">v2.0</span></div><div class="flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg self-start"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span><span class="font-code-sm text-code-sm text-tertiary tracking-wider font-semibold">LOCAL · SECURE</span></div></div><div class="px-space-md py-space-sm bg-surface-container border-t border-b border-surface-variant flex items-center justify-between cursor-pointer hover:bg-surface-container-high transition-colors"><div class="flex flex-col min-w-0 pr-space-xs"><span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Active Matter</span><span class="font-title text-[13px] leading-tight text-on-surface truncate">Singh v. Sharma</span><span class="font-code-sm text-[10px] leading-none text-on-surface-variant truncate mt-0.5">REF-2024-0145 · Delhi HC</span></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">unfold_more</span></div><div class="flex-1 overflow-y-auto px-space-sm py-space-md flex flex-col gap-space-lg"><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Input &amp; Search</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="overview" href="#"><span class="font-body-sm text-body-sm">Overview</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="documents" href="#"><span class="font-body-sm text-body-sm">Documents</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">14</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="search-ask" href="#"><span class="font-body-sm text-body-sm">Search &amp; Ask</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Analysis</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="claims" href="#"><span class="font-body-sm text-body-sm">Claims</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">47</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="entities" href="#"><span class="font-body-sm text-body-sm">Entities</span></a><a aria-current="page" class="flex items-center justify-between px-space-sm py-1.5 rounded transition-colors bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]" data-path="chronology" href="#"><span class="font-body-sm text-body-sm">Chronology</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">12</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="compare" href="#"><span class="font-body-sm text-body-sm">Compare</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="findings" href="#"><span class="font-body-sm text-body-sm">Findings</span><span class="font-code-sm text-[10px] leading-tight bg-secondary-fixed text-on-secondary-fixed px-1.5 py-0.5 rounded font-semibold">3 pending</span></a></nav><nav class="flex flex-col gap-0.5" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_1px_2px_rgba(28,25,23,0.04)]"><div class="px-space-sm py-1 font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Case Work</div><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="arguments-builder" href="#"><span class="font-body-sm text-body-sm">Arguments Builder</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="case-diary" href="#"><span class="font-body-sm text-body-sm">Case Diary</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="hearings" href="#"><span class="font-body-sm text-body-sm">Hearings</span><span class="font-code-sm text-[10px] leading-tight bg-error-container text-on-error-container px-1.5 py-0.5 rounded font-semibold">4 Nov</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="tasks" href="#"><span class="font-body-sm text-body-sm">Tasks</span><span class="font-code-sm text-code-sm bg-surface-container-high text-on-surface-variant px-1.5 py-0.2 rounded">5 open</span></a><a class="flex items-center justify-between px-space-sm py-1.5 rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="witnesses" href="#"><span class="font-body-sm text-body-sm">Witnesses</span></a></nav></div><div class="p-space-sm bg-surface-container-lowest border-t border-surface-variant flex flex-col gap-space-xs"><div class="flex items-center justify-between px-space-xs py-1 text-on-surface-variant"><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Quick Export" type="button"><span class="material-symbols-outlined text-[18px]">download</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Settings" type="button"><span class="material-symbols-outlined text-[18px]">settings</span></button><button class="p-1 rounded hover:bg-surface-container hover:text-on-surface transition-colors" title="Toggle Theme" type="button"><span class="material-symbols-outlined text-[18px]">light_mode</span></button></div><div class="flex items-center gap-space-sm pt-space-xs border-t border-surface-variant"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsVZfus7n0s6QXBQFPxuBSNhJmave2WwsBITQzk3PyXmlHO__FuSWiQr3FMjT54krPTFUj6mIlbfctNZk_va-9ugyfxye9bGUVXPC1NCw4bBWY5OhLuaVzYe56qsI2yNgROsrewywGUwG1oxM77rwR3kk6TQTSnt3lqiO-XmcvF5Vti8pnCgMUlP6jmCdlPRLzVplrshQc9jamfEsScmiWMIwLR_LVAGjw0OPTceVa"/><div class="flex flex-col min-w-0"><span class="font-title text-[12px] leading-tight text-on-surface truncate">Adv. Rajesh Sharma</span><span class="font-body-sm text-[10px] leading-none text-on-surface-variant truncate">Lead Counsel</span></div></div></div></div></aside><div class="pl-[260px]"><header class="fixed top-0 left-[260px] right-0 h-14 bg-surface-container-lowest z-40 flex items-center justify-between px-space-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex items-center gap-space-md"><div class="flex items-center gap-1.5"><button aria-label="Close" class="w-3 h-3 rounded-full bg-error hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Minimize" class="w-3 h-3 rounded-full bg-[#f59e0b] hover:opacity-80 transition-opacity" type="button"></button><button aria-label="Maximize" class="w-3 h-3 rounded-full bg-[#10b981] hover:opacity-80 transition-opacity" type="button"></button></div><div class="flex items-center gap-space-xs text-on-surface-variant text-label-md"><span class="material-symbols-outlined text-[16px]">gavel</span><span class="font-body-sm text-body-sm text-on-surface-variant">Tauri Desktop · Session Active</span></div></div><div class="flex items-center gap-space-md"><button class="flex items-center justify-between gap-space-lg bg-surface-container-low px-space-md py-1.5 rounded border border-surface-variant text-on-surface-variant hover:text-on-surface hover:border-outline transition-colors w-72" type="button"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px]">search</span><span class="font-body-sm text-body-sm truncate">Search matter facts...</span></div><kbd class="font-code-sm text-[10px] px-1.5 py-0.5 rounded bg-surface-container border border-surface-variant text-on-surface-variant">Ctrl+K</kbd></button><div class="flex items-center gap-1.5 bg-surface-container px-space-sm py-1 rounded text-tertiary font-code-sm text-code-sm"><span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span><span>LOCAL ONLY</span></div><button class="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-1.5 rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-[0_1px_2px_rgba(28,25,23,0.04)]" type="button"><span class="material-symbols-outlined text-[16px]">add</span><span>New Matter</span></button></div></header><main class="relative pt-14 w-full px-space-lg min-h-screen bg-background"><div class="flex flex-col w-full pb-16">
+<!-- Top Ambient Highlight Substrate -->
+<div class="relative w-full overflow-hidden rounded-xl bg-surface-container-low p-space-lg mb-space-lg shadow-sm">
+<div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+<div class="absolute right-64 -bottom-16 w-60 h-60 rounded-full bg-tertiary/5 blur-2xl pointer-events-none"></div>
+<div class="relative flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1 max-w-2xl">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider uppercase">Section 6.8 · Evidentiary Record</span>
+<span class="font-code-sm text-code-sm text-tertiary flex items-center gap-1 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Cryptographic Integrity Verified
+          </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Chronology</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Automated chronological fact timeline extracted from case documents with date precision indicators and verification status.
+        </p>
+</div>
+<!-- Header Actions -->
+<div class="flex flex-wrap items-center gap-space-sm self-start lg:self-center">
+<button class="flex items-center gap-1.5 bg-surface-container-lowest text-on-surface px-space-md py-2 rounded shadow-sm hover:bg-surface-container transition-all text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-[17px] text-primary">add</span>
+<span>Add Manual Event</span>
+</button>
+<button class="flex items-center gap-1.5 bg-surface-container-lowest text-on-surface px-space-md py-2 rounded shadow-sm hover:bg-surface-container transition-all text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-[17px] text-tertiary">refresh</span>
+<span>Re-Build Chronology</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">▶</span>
+</button>
+<button class="flex items-center gap-1.5 bg-primary text-on-primary px-space-md py-2 rounded shadow-sm hover:bg-primary-container transition-all text-label-md font-label-md" type="button">
+<span class="material-symbols-outlined text-[17px]">description</span>
+<span>Export Chronology DOCX</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Filter & Control Deck (Bento Sub-frame) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-md mb-space-xl">
+<!-- Status Filter Pills -->
+<div class="xl:col-span-6 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-center gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Verification Scope</span>
+<div class="flex flex-wrap items-center gap-1.5">
+<button class="px-space-md py-1.5 rounded bg-primary text-on-primary font-label-md text-label-md transition-colors shadow-sm" type="button">
+          All (12)
+        </button>
+<button class="px-space-md py-1.5 rounded bg-surface-container-low text-tertiary hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Accepted (8)</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-surface-container-low text-secondary hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">hourglass_top</span>
+<span>Pending Review (3)</span>
+</button>
+<button class="px-space-md py-1.5 rounded bg-surface-container-low text-error hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[15px]">warning</span>
+<span>Ambiguous (1)</span>
+</button>
+</div>
+</div>
+<!-- Document Source Selector -->
+<div class="xl:col-span-3 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-center gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold" for="doc-filter">Document Filter</label>
+<div class="relative w-full">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface text-body-sm font-body-sm px-space-md py-1.5 pr-8 rounded focus:outline-none focus:bg-surface-container transition-colors cursor-pointer" id="doc-filter">
+<option>All Documents (14 Exhibits)</option>
+<option>Plaint.pdf (4 citations)</option>
+<option>Written_Statement.pdf (3 citations)</option>
+<option>Exhibit_A.pdf (Agreement)</option>
+<option>Exhibit_C.pdf (Banking Records)</option>
+<option>Exhibit_D.pdf (Statutory Notice)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Date Precision Selector -->
+<div class="xl:col-span-3 bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-center gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold" for="precision-filter">Temporal Precision</label>
+<div class="relative w-full">
+<select class="w-full appearance-none bg-surface-container-low text-on-surface text-body-sm font-body-sm px-space-md py-1.5 pr-8 rounded focus:outline-none focus:bg-surface-container transition-colors cursor-pointer" id="precision-filter">
+<option>All Precisions (Exact, Approx, Range)</option>
+<option>Strictly Exact Only (ISO 8601 Timestamp)</option>
+<option>Approximate Dates (Month/Quarter)</option>
+<option>Inferred / Contested by Defense</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Evidentiary Metrics Strip with Rich Vector Sparkline -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Total Event Nodes</span>
+<span class="font-headline-md text-headline-md text-on-surface">12 <span class="font-code-sm text-code-sm text-on-surface-variant">entries</span></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">calendar_view_day</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Admitted Evidentiary Ratio</span>
+<span class="font-headline-md text-headline-md text-tertiary">66.7% <span class="font-code-sm text-code-sm text-tertiary">Verified</span></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Limitation Horizon</span>
+<span class="font-headline-md text-headline-md text-on-surface">36 <span class="font-code-sm text-code-sm text-on-surface-variant">Months</span></span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+</div>
+<!-- Mini Dynamic Sparkline Card -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Timeline Density</span>
+<span class="font-code-sm text-code-sm text-primary font-semibold">Q1 '23 – Q1 '24</span>
+</div>
+<div class="w-full pt-2">
+<svg class="w-full h-7 text-primary" fill="none" preserveaspectratio="none" viewbox="0 0 160 28">
+<path d="M0 24 L20 18 L40 6 L60 8 L80 20 L100 22 L120 14 L140 4 L160 12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M0 24 L20 18 L40 6 L60 8 L80 20 L100 22 L120 14 L140 4 L160 12 V 28 H 0 Z" fill="currentColor" fill-opacity="0.08"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Vertical Interactive Chronology Canvas -->
+<div class="relative bg-surface-container-lowest rounded-xl shadow-sm p-space-lg lg:p-space-xl">
+<!-- Timeline spine element (Base track) -->
+<div class="absolute left-6 lg:left-12 top-10 bottom-12 w-0.5 bg-surface-variant pointer-events-none"></div>
+<div class="flex flex-col gap-space-xl relative">
+<!-- ================= EVENT 1 ================= -->
+<div class="relative flex items-start gap-space-lg group">
+<!-- Node indicator -->
+<div class="relative z-10 flex-shrink-0 w-12 lg:w-24 flex items-center justify-end">
+<div class="hidden lg:flex flex-col items-end pr-space-md">
+<span class="font-code-md text-code-md text-on-surface font-semibold">15 Mar 2023</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">10:45 IST</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<!-- Event Body Card -->
+<div class="flex-1 bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-sm">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="lg:hidden font-code-md text-code-md text-on-surface font-semibold mr-space-xs">15 Mar 2023</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider">EXACT DATE</span>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-0.5 rounded-full font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">done</span>
+<span>Accepted</span>
+</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Bookmark Fact" type="button">
+<span class="material-symbols-outlined text-[18px]">bookmark_add</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors" title="Export Citation" type="button">
+<span class="material-symbols-outlined text-[18px]">share</span>
+</button>
+</div>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+            Execution of Agreement to Sell
+          </h2>
+<p class="font-body-md text-body-md text-on-surface mb-space-md">
+            Parties signed agreement for Sector 62 property at New Delhi for total consideration of ₹2.5 Crores. Primary covenants stipulated vacant possession handover upon balance remittance.
+          </p>
+<!-- Source Badges & Metadata -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-md">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">description</span>
+<span class="font-code-sm text-code-sm font-semibold">Plaint.pdf, p.5, para 4</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">attach_file</span>
+<span class="font-code-sm text-code-sm font-semibold">Exhibit_A.pdf, p.1</span>
+</div>
+<div class="font-code-sm text-code-sm text-tertiary flex items-center gap-1 ml-auto">
+<span class="material-symbols-outlined text-[14px]">format_image_left</span>
+<span>SHA-256 #8b13c...Verified</span>
+</div>
+</div>
+<!-- Footer Verification Note & Card Actions -->
+<div class="pt-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm bg-surface-container-lowest/40 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span class="font-body-sm text-body-sm">Verified by Adv. Rajesh Sharma on 28 Oct 2026</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                View Excerpt
+              </button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                Edit Event
+              </button>
+<div class="relative">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors flex items-center gap-0.5" type="button">
+<span>Review</span>
+<span class="material-symbols-outlined text-[14px]">arrow_drop_down</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= EVENT 2 ================= -->
+<div class="relative flex items-start gap-space-lg group">
+<!-- Node indicator -->
+<div class="relative z-10 flex-shrink-0 w-12 lg:w-24 flex items-center justify-end">
+<div class="hidden lg:flex flex-col items-end pr-space-md">
+<span class="font-code-md text-code-md text-on-surface font-semibold">16 Mar 2023</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">14:12 IST</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<!-- Event Body Card -->
+<div class="flex-1 bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-sm">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="lg:hidden font-code-md text-code-md text-on-surface font-semibold mr-space-xs">16 Mar 2023</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider">EXACT DATE</span>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-0.5 rounded-full font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">done</span>
+<span>Accepted</span>
+</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="font-code-sm text-code-sm text-tertiary bg-tertiary/10 px-2 py-0.5 rounded font-semibold">₹25,00,000 Transferred</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+            Payment of Earnest Money (₹25,00,000)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface mb-space-md">
+            RTGS transfer of ₹25 Lakhs credited to respondent account via HDFC Bank (UTR No: HDFCR5202303168819201). Receipt counter-signed by Respondent's agent on same day.
+          </p>
+<!-- Source Badges & Actions -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">account_balance</span>
+<span class="font-code-sm text-code-sm font-semibold">Exhibit_C.pdf (Bank Advice, p.2)</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                View Ledger
+              </button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                Edit
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= EVENT 3 ================= -->
+<div class="relative flex items-start gap-space-lg group">
+<!-- Node indicator -->
+<div class="relative z-10 flex-shrink-0 w-12 lg:w-24 flex items-center justify-end">
+<div class="hidden lg:flex flex-col items-end pr-space-md">
+<span class="font-code-md text-code-md text-on-surface font-semibold">01 Jun 2023</span>
+<span class="font-code-sm text-code-sm text-secondary">Approx. Window</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-[#f59e0b]"></span>
+</div>
+</div>
+<!-- Event Body Card -->
+<div class="flex-1 bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-sm">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="lg:hidden font-code-md text-code-md text-on-surface font-semibold mr-space-xs">01 Jun 2023</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider">APPROX DATE</span>
+<span class="font-label-sm text-label-sm bg-secondary-fixed text-on-secondary-fixed px-space-sm py-0.5 rounded-full font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">hourglass_top</span>
+<span>Pending Review</span>
+</span>
+</div>
+<span class="font-code-sm text-code-sm text-on-surface-variant">Extracted via Heuristic Core v2</span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+            Alleged First Breach of Obligation to Hand Over NOC
+          </h2>
+<p class="font-body-md text-body-md text-on-surface mb-space-md">
+            Petitioner claims failure to produce municipal sanctioned building plans within 75 days of earnest money receipt. Respondent contends NOC requirement was subject to preliminary survey completion.
+          </p>
+<!-- Source Badge -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-md">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">gavel</span>
+<span class="font-code-sm text-code-sm font-semibold">Written_Statement.pdf, p.8, para 11</span>
+</div>
+</div>
+<!-- Pending Review Action Suite -->
+<div class="pt-space-sm flex flex-wrap items-center gap-space-xs bg-surface-container-lowest/60 -mx-space-lg -mb-space-lg px-space-lg py-space-sm rounded-b-xl">
+<button class="px-space-md py-1 rounded bg-tertiary text-on-tertiary font-label-md text-label-md hover:opacity-95 transition-opacity flex items-center gap-1 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[14px]">check</span>
+<span>Accept</span>
+</button>
+<button class="px-space-md py-1 rounded bg-error-container text-on-error-container font-label-md text-label-md hover:bg-error/20 transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">close</span>
+<span>Reject</span>
+</button>
+<button class="px-space-md py-1 rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[14px]">find_in_page</span>
+<span>Needs Evidence</span>
+</button>
+<button class="px-space-md py-1 rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors flex items-center gap-1 ml-auto" type="button">
+<span class="material-symbols-outlined text-[14px]">edit_calendar</span>
+<span>Edit Date</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ================= EVENT 4 (Ambiguous / Dashed Track Segment) ================= -->
+<div class="relative flex items-start gap-space-lg group">
+<!-- Dashed connector modifier segment -->
+<div class="absolute left-6 lg:left-12 -top-12 h-14 w-0.5 border-l-2 border-dashed border-[#ea580c] pointer-events-none -translate-x-[1px]"></div>
+<!-- Node indicator: Half-filled dot -->
+<div class="relative z-10 flex-shrink-0 w-12 lg:w-24 flex items-center justify-end">
+<div class="hidden lg:flex flex-col items-end pr-space-md">
+<span class="font-code-md text-code-md text-[#ea580c] font-semibold">~Sep 2023</span>
+<span class="font-code-sm text-code-sm text-error">Contested</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center">
+<!-- Half-filled circle representation -->
+<div class="w-4 h-4 rounded-full overflow-hidden flex">
+<div class="w-2 h-4 bg-[#ea580c]"></div>
+<div class="w-2 h-4 bg-surface-variant"></div>
+</div>
+</div>
+</div>
+<!-- Event Body Card (Accentuated Ambiguity) -->
+<div class="flex-1 bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="absolute top-0 left-0 bottom-0 w-1 bg-[#ea580c]"></div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-sm pl-2">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="lg:hidden font-code-md text-code-md text-[#ea580c] font-semibold mr-space-xs">~Sep 2023</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider">INFERRED DATE</span>
+<span class="font-label-sm text-label-sm bg-[#ea580c]/15 text-[#ea580c] px-space-sm py-0.5 rounded-full font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">warning</span>
+<span>Ambiguous</span>
+</span>
+</div>
+<span class="font-code-sm text-code-sm text-error flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[15px]">report_problem</span>
+<span>Potential Section 9 Limitation Conflict</span>
+</span>
+</div>
+<div class="pl-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+              Verbal Dispute &amp; Notice Period Commenced
+            </h2>
+<p class="font-body-md text-body-md text-on-surface mb-space-md">
+              Inferred from correspondence; exact date contested by Respondent. Petitioner claims verbal meeting held at counsel's chamber whereas Respondent denies meeting ever transpired.
+            </p>
+<!-- Source Badge -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-md">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-[#ea580c]">article</span>
+<span class="font-code-sm text-code-sm font-semibold">Exhibit_B.pdf, p.2 ("towards the end of the monsoon term")</span>
+</div>
+</div>
+<!-- Evidentiary Conflict Advisory Box -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg flex items-start gap-space-sm mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[20px] text-[#ea580c] flex-shrink-0 mt-0.5">priority_high</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#ea580c] font-semibold">Evidentiary Warning</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-0.5">
+                  Date requires oral testimony or WhatsApp log backup. Lack of strict dispatch receipt makes this point vulnerable under Indian Evidence Act § 114(e).
+                </p>
+</div>
+</div>
+<!-- Ambiguity Controls -->
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-1 rounded bg-primary text-on-primary font-label-md text-label-md hover:bg-primary-container transition-colors shadow-sm" type="button">
+                Attach WhatsApp Metadata
+              </button>
+<button class="px-space-md py-1 rounded bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors" type="button">
+                Flag for Oral Cross-Exam
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= EVENT 5 ================= -->
+<div class="relative flex items-start gap-space-lg group">
+<!-- Node indicator -->
+<div class="relative z-10 flex-shrink-0 w-12 lg:w-24 flex items-center justify-end">
+<div class="hidden lg:flex flex-col items-end pr-space-md">
+<span class="font-code-md text-code-md text-on-surface font-semibold">01 Jan 2024</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">11:00 IST</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-surface-container-lowest shadow-sm flex items-center justify-center">
+<span class="w-4 h-4 rounded-full bg-tertiary"></span>
+</div>
+</div>
+<!-- Event Body Card -->
+<div class="flex-1 bg-surface-container-low rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-sm">
+<div class="flex items-center flex-wrap gap-space-xs">
+<span class="lg:hidden font-code-md text-code-md text-on-surface font-semibold mr-space-xs">01 Jan 2024</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-space-xs py-0.5 rounded font-semibold tracking-wider">EXACT DATE</span>
+<span class="font-label-sm text-label-sm bg-tertiary/10 text-tertiary px-space-sm py-0.5 rounded-full font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px]">done</span>
+<span>Accepted</span>
+</span>
+</div>
+<div class="flex items-center gap-1 font-code-sm text-code-sm text-on-surface-variant">
+<span>Speed Post: ED88291039IN</span>
+</div>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-xs">
+            Legal Notice of Demand Served
+          </h2>
+<p class="font-body-md text-body-md text-on-surface mb-space-md">
+            Formal advocate notice calling upon respondent to execute sale deed within 15 days from delivery date, tendering readiness of balance ₹2.25 Crores via demand draft.
+          </p>
+<!-- Source Badges & Postal Tracking -->
+<div class="flex flex-wrap items-center gap-space-sm mb-space-md">
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">local_post_office</span>
+<span class="font-code-sm text-code-sm font-semibold">Exhibit_D.pdf, p.1-3</span>
+</div>
+<div class="flex items-center gap-1 bg-surface-container-lowest px-space-sm py-1 rounded shadow-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-tertiary">mark_email_read</span>
+<span class="font-code-sm text-code-sm font-semibold">Postal Tracking Receipt (Delivered 03 Jan 2024)</span>
+</div>
+</div>
+<!-- Bottom Action Deck -->
+<div class="flex items-center justify-between pt-space-xs">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Verified by Adv. Rajesh Sharma</span>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                View Postal Track Record
+              </button>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface hover:bg-surface-variant font-label-md text-label-md transition-colors" type="button">
+                View Full Brief
+              </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Summary & Export Bar (Fixed/Sticky Court Ready Strip) -->
+<div class="mt-space-lg sticky bottom-4 z-30 bg-surface-container-lowest p-space-md lg:px-space-lg lg:py-space-md rounded-xl shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[24px]">balance</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm">
+<span class="font-title text-title text-on-surface">12 events sequenced</span>
+<span class="font-code-sm text-code-sm bg-surface-container text-on-surface-variant px-1.5 py-0.5 rounded">Spanning 15 Mar 2023 to 15 Mar 2024</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm mt-0.5">
+<span class="material-symbols-outlined text-[16px] text-tertiary">event_available</span>
+<span>Earliest limitation expiry: <strong class="text-on-surface font-semibold">14 Mar 2027</strong> (Limitation Act, 1963 · Art. 54)</span>
+</div>
+</div>
+</div>
+<!-- Court Ready Export Trigger -->
+<div class="flex items-center gap-space-sm self-end md:self-center">
+<button class="flex items-center gap-2 bg-primary text-on-primary px-space-lg py-2.5 rounded font-label-md text-label-md shadow-md hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>Export as Court Ready Annexure (Form No. 4)</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic filter micro-interaction
+  document.addEventListener('DOMContentLoaded', () => {
+    const docSelect = document.getElementById('doc-filter');
+    const precisionSelect = document.getElementById('precision-filter');
+    
+    if (docSelect) {
+      docSelect.addEventListener('change', (e) => {
+        console.info(`[CounselOS] Filtered chronology for document: ${e.target.value}`);
+      });
+    }
+
+    if (precisionSelect) {
+      precisionSelect.addEventListener('change', (e) => {
+        console.info(`[CounselOS] Precision threshold applied: ${e.target.value}`);
+      });
+    }
+  });
+</script></main></div></body></html>

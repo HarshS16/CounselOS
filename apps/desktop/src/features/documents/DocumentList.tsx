@@ -1,37 +1,79 @@
 import { useCallback, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  Upload,
-  FileText,
-  AlertCircle,
-  CheckCircle2,
-  Clock,
-  Loader2,
-  Eye,
-  Trash2,
-  RotateCw,
-} from "lucide-react";
 import { useDocuments, useUploadDocument, useDeleteDocument } from "@/hooks/useApi";
 import { clsx } from "clsx";
 import { format } from "date-fns";
 import type { Document } from "@/types";
 
-const statusConfig: Record<string, { icon: typeof CheckCircle2; color: string; label: string }> = {
-  indexed: { icon: CheckCircle2, color: "var(--color-success)", label: "Indexed" },
-  imported: { icon: Clock, color: "var(--color-text-muted)", label: "Imported" },
-  queued: { icon: Clock, color: "var(--color-info)", label: "Queued" },
-  processing: { icon: Loader2, color: "var(--color-warning)", label: "Processing" },
-  partially_processed: { icon: AlertCircle, color: "var(--color-warning)", label: "Partial" },
-  failed: { icon: AlertCircle, color: "var(--color-danger)", label: "Failed" },
-  needs_review: { icon: Eye, color: "var(--color-warning)", label: "Needs Review" },
+type FilterStatus = "all" | "indexed" | "processing" | "failed";
+
+const statusConfig: Record<
+  string,
+  { icon: string; label: string; bgClass: string; textClass: string; spin?: boolean }
+> = {
+  indexed: {
+    icon: "check_circle",
+    label: "Indexed",
+    bgClass: "bg-tertiary-fixed",
+    textClass: "text-on-tertiary-fixed",
+  },
+  imported: {
+    icon: "schedule",
+    label: "Imported",
+    bgClass: "bg-surface-container-high",
+    textClass: "text-on-surface-variant",
+  },
+  queued: {
+    icon: "schedule",
+    label: "Queued",
+    bgClass: "bg-secondary-fixed",
+    textClass: "text-on-secondary-fixed",
+  },
+  processing: {
+    icon: "autorenew",
+    label: "Processing",
+    bgClass: "bg-secondary-fixed",
+    textClass: "text-on-secondary-fixed",
+    spin: true,
+  },
+  partially_processed: {
+    icon: "warning",
+    label: "Partial",
+    bgClass: "bg-error-container",
+    textClass: "text-on-error-container",
+  },
+  failed: {
+    icon: "error",
+    label: "Failed",
+    bgClass: "bg-error-container",
+    textClass: "text-on-error-container",
+  },
+  needs_review: {
+    icon: "visibility",
+    label: "Needs Review",
+    bgClass: "bg-secondary-fixed",
+    textClass: "text-on-secondary-fixed",
+  },
 };
 
 function StatusBadge({ status }: { status: string }) {
   const cfg = statusConfig[status] || statusConfig.imported;
-  const Icon = cfg.icon;
   return (
-    <span className="flex items-center gap-1.5 text-xs" style={{ color: cfg.color }}>
-      <Icon size={12} className={status === "processing" ? "animate-spin" : ""} />
+    <span
+      className={clsx(
+        "inline-flex items-center gap-1 font-code-sm text-[11px] px-2 py-0.5 rounded font-medium",
+        cfg.bgClass,
+        cfg.textClass
+      )}
+    >
+      <span
+        className={clsx(
+          "material-symbols-outlined text-[14px]",
+          cfg.spin && "animate-spin"
+        )}
+      >
+        {cfg.icon}
+      </span>
       {cfg.label}
     </span>
   );
@@ -50,6 +92,7 @@ export default function DocumentList() {
   const deleteDoc = useDeleteDocument(matterId!);
   const [dragOver, setDragOver] = useState(false);
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
+  const [filter, setFilter] = useState<FilterStatus>("all");
 
   const handleFiles = useCallback(
     async (files: FileList) => {
@@ -69,12 +112,39 @@ export default function DocumentList() {
     [handleFiles]
   );
 
+  const filteredDocs = documents?.filter((doc) => {
+    if (filter === "all") return true;
+    if (filter === "indexed") return doc.processing_status === "indexed";
+    if (filter === "processing")
+      return ["processing", "queued", "imported"].includes(doc.processing_status);
+    if (filter === "failed")
+      return ["failed", "partially_processed", "needs_review"].includes(
+        doc.processing_status
+      );
+    return true;
+  });
+
+  const filterTabs: { key: FilterStatus; label: string }[] = [
+    { key: "all", label: "All" },
+    { key: "indexed", label: "Indexed" },
+    { key: "processing", label: "Processing" },
+    { key: "failed", label: "Failed" },
+  ];
+
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-xl font-bold">Documents</h1>
-        <label className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors cursor-pointer">
-          <Upload size={16} />
+    <div className="px-space-lg py-space-xl">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-space-lg">
+        <div>
+          <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+            Documents
+          </h1>
+          <p className="font-body-md text-body-md text-on-surface-variant mt-0.5">
+            Upload and manage case documents for analysis.
+          </p>
+        </div>
+        <label className="flex items-center gap-space-xs bg-primary text-on-primary px-space-md py-1.5 rounded font-label-md text-label-md hover:bg-primary-container transition-colors shadow-micro cursor-pointer">
+          <span className="material-symbols-outlined text-[16px]">upload_file</span>
           Upload Files
           <input
             type="file"
@@ -86,96 +156,229 @@ export default function DocumentList() {
         </label>
       </div>
 
+      {/* Drag-drop zone */}
       <div
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+        onDragOver={(e) => {
+          e.preventDefault();
+          setDragOver(true);
+        }}
         onDragLeave={() => setDragOver(false)}
         onDrop={handleDrop}
         className={clsx(
-          "border-2 border-dashed rounded-xl p-8 mb-6 text-center transition-colors",
+          "rounded-lg p-space-lg flex flex-col items-center justify-center text-center cursor-pointer transition-colors border-2 border-dashed mb-space-lg",
           dragOver
-            ? "border-[var(--color-accent)] bg-[color-mix(in_srgb,var(--color-accent)_5%,transparent)]"
-            : "border-[var(--color-border-primary)] hover:border-[var(--color-border-secondary)]"
+            ? "border-primary bg-primary-fixed"
+            : "bg-surface-container-low border-surface-variant hover:bg-surface-container"
         )}
       >
-        <Upload size={24} className="mx-auto mb-2 text-[var(--color-text-muted)]" />
-        <p className="text-sm text-[var(--color-text-muted)]">
+        <span className="material-symbols-outlined text-[32px] text-on-surface-variant mb-space-sm">
+          upload_file
+        </span>
+        <p className="font-body-md text-body-md text-on-surface-variant">
           Drag and drop PDF or DOCX files here
+        </p>
+        <p className="font-label-sm text-label-sm text-outline mt-1">
+          Files are processed entirely on your local machine
         </p>
       </div>
 
+      {/* Upload progress */}
       {upload.isPending && (
-        <div className="flex items-center gap-2 mb-4 p-3 rounded-lg bg-[var(--color-bg-tertiary)]">
-          <Loader2 size={16} className="animate-spin text-[var(--color-accent)]" />
-          <span className="text-sm">Uploading and processing...</span>
+        <div className="flex items-center gap-space-sm mb-space-md p-space-md rounded-lg bg-primary-fixed">
+          <span className="material-symbols-outlined text-[18px] text-primary animate-spin">
+            autorenew
+          </span>
+          <span className="font-body-sm text-body-sm text-primary">
+            Uploading and processing...
+          </span>
         </div>
       )}
 
+      {/* Filter tabs */}
+      <div className="flex items-center gap-1 bg-surface-container-low p-1 rounded-lg mb-space-lg self-start inline-flex">
+        {filterTabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setFilter(tab.key)}
+            className={clsx(
+              "px-space-md py-1 rounded font-label-md text-label-md transition-colors",
+              filter === tab.key
+                ? "bg-surface-container-lowest text-primary shadow-micro font-semibold"
+                : "text-on-surface-variant hover:text-on-surface hover:bg-surface-container"
+            )}
+          >
+            {tab.label}
+            {tab.key !== "all" && documents && (
+              <span className="ml-1 font-code-sm text-code-sm">
+                (
+                {
+                  documents.filter((d) => {
+                    if (tab.key === "indexed") return d.processing_status === "indexed";
+                    if (tab.key === "processing")
+                      return ["processing", "queued", "imported"].includes(
+                        d.processing_status
+                      );
+                    if (tab.key === "failed")
+                      return ["failed", "partially_processed", "needs_review"].includes(
+                        d.processing_status
+                      );
+                    return false;
+                  }).length
+                }
+                )
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Document list */}
       {isLoading ? (
-        <div className="text-center text-[var(--color-text-muted)] py-8">Loading documents...</div>
-      ) : !documents?.length ? (
-        <div className="text-center py-12">
-          <FileText size={40} className="mx-auto mb-3 text-[var(--color-text-muted)] opacity-50" />
-          <p className="text-sm text-[var(--color-text-muted)]">
-            No documents yet. Upload PDF or DOCX files to begin analysis.
+        <div className="flex items-center justify-center py-space-xl text-on-surface-variant">
+          <span className="material-symbols-outlined text-[24px] animate-spin mr-space-sm">
+            autorenew
+          </span>
+          <span className="font-body-md text-body-md">Loading documents...</span>
+        </div>
+      ) : !filteredDocs?.length ? (
+        <div className="flex flex-col items-center justify-center py-space-xl text-center">
+          <span className="material-symbols-outlined text-[48px] text-outline mb-space-md">
+            description
+          </span>
+          <p className="font-body-md text-body-md text-on-surface-variant">
+            {filter === "all"
+              ? "No documents yet. Upload PDF or DOCX files to begin analysis."
+              : `No ${filter} documents found.`}
           </p>
         </div>
       ) : (
-        <div className="space-y-2">
-          {documents.map((doc) => (
+        <div className="flex flex-col gap-1">
+          {/* Table header */}
+          <div className="flex items-center gap-space-md px-space-md py-space-sm text-on-surface-variant">
+            <div className="w-6" />
+            <span className="flex-1 font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+              Document
+            </span>
+            <span className="w-20 text-right font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+              Pages
+            </span>
+            <span className="w-20 text-right font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+              Size
+            </span>
+            <span className="w-24 text-right font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+              Status
+            </span>
+          </div>
+
+          {filteredDocs.map((doc) => (
             <div
               key={doc.id}
               className={clsx(
-                "flex items-center gap-4 p-4 rounded-xl border transition-colors cursor-pointer",
+                "flex items-center gap-space-md px-space-md py-space-sm rounded-lg transition-colors cursor-pointer",
                 selectedDoc?.id === doc.id
-                  ? "bg-[var(--color-bg-elevated)] border-[var(--color-accent)]"
-                  : "bg-[var(--color-bg-secondary)] border-[var(--color-border-primary)] hover:border-[var(--color-border-secondary)]"
+                  ? "bg-primary-fixed border border-primary"
+                  : "bg-surface-container-lowest hover:bg-surface-container-low border border-transparent"
               )}
-              onClick={() => setSelectedDoc(selectedDoc?.id === doc.id ? null : doc)}
+              onClick={() =>
+                setSelectedDoc(selectedDoc?.id === doc.id ? null : doc)
+              }
             >
-              <FileText size={20} className="text-[var(--color-accent)] flex-shrink-0" />
+              <span className="material-symbols-outlined text-[20px] text-primary w-6 text-center">
+                description
+              </span>
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-medium truncate">{doc.original_name}</h3>
-                <div className="flex items-center gap-3 mt-1">
-                  <span className="text-xs text-[var(--color-text-muted)]">
-                    {formatSize(doc.size_bytes)}
-                  </span>
-                  <span className="text-xs text-[var(--color-text-muted)]">
-                    {doc.page_count ? `${doc.page_count} pages` : ""}
-                  </span>
+                <span className="font-title text-[13px] leading-tight text-on-surface truncate block">
+                  {doc.original_name}
+                </span>
+                <span className="font-code-sm text-[10px] text-on-surface-variant mt-0.5 block">
+                  {format(new Date(doc.imported_at), "dd MMM yyyy HH:mm")}
                   {doc.is_scanned && (
-                    <span className="text-xs text-[var(--color-warning)]">Scanned/OCR</span>
+                    <span className="ml-2 text-on-surface-variant">&middot; OCR Scanned</span>
                   )}
-                  <span className="text-xs text-[var(--color-text-muted)]">
-                    {format(new Date(doc.imported_at), "dd MMM yyyy HH:mm")}
-                  </span>
-                </div>
+                </span>
               </div>
-              <StatusBadge status={doc.processing_status} />
+              <span className="w-20 text-right font-code-sm text-code-sm text-on-surface-variant">
+                {doc.page_count ?? "—"}
+              </span>
+              <span className="w-20 text-right font-code-sm text-code-sm text-on-surface-variant">
+                {formatSize(doc.size_bytes)}
+              </span>
+              <div className="w-24 flex justify-end">
+                <StatusBadge status={doc.processing_status} />
+              </div>
             </div>
           ))}
         </div>
       )}
 
+      {/* Selected document detail panel */}
       {selectedDoc && (
-        <div className="mt-4 p-4 rounded-xl bg-[var(--color-bg-secondary)] border border-[var(--color-border-primary)]">
-          <h3 className="text-sm font-semibold mb-3">{selectedDoc.original_name}</h3>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            <div><span className="text-[var(--color-text-muted)]">SHA-256:</span> <span className="font-mono">{selectedDoc.sha256.substring(0, 16)}...</span></div>
-            <div><span className="text-[var(--color-text-muted)]">MIME:</span> {selectedDoc.mime_type}</div>
-            <div><span className="text-[var(--color-text-muted)]">Parser:</span> {selectedDoc.parser_version || "N/A"}</div>
-            <div><span className="text-[var(--color-text-muted)]">OCR:</span> {selectedDoc.ocr_version || "N/A"}</div>
+        <div className="bg-surface-container-lowest rounded-xl shadow-micro p-space-lg mt-space-lg border border-surface-variant">
+          <div className="flex items-center justify-between mb-space-md">
+            <h3 className="font-headline-sm text-headline-sm text-on-surface">
+              {selectedDoc.original_name}
+            </h3>
+            <button
+              onClick={() => setSelectedDoc(null)}
+              className="p-1 rounded hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
+            >
+              <span className="material-symbols-outlined text-[18px]">close</span>
+            </button>
           </div>
+
+          <div className="grid grid-cols-2 gap-space-sm">
+            <div className="flex flex-col gap-0.5">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+                SHA-256
+              </span>
+              <span className="font-code-sm text-code-sm text-on-surface">
+                {selectedDoc.sha256.substring(0, 16)}...
+              </span>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+                MIME Type
+              </span>
+              <span className="font-code-sm text-code-sm text-on-surface">
+                {selectedDoc.mime_type}
+              </span>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+                Parser Version
+              </span>
+              <span className="font-code-sm text-code-sm text-on-surface">
+                {selectedDoc.parser_version || "N/A"}
+              </span>
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+                OCR Version
+              </span>
+              <span className="font-code-sm text-code-sm text-on-surface">
+                {selectedDoc.ocr_version || "N/A"}
+              </span>
+            </div>
+          </div>
+
           {selectedDoc.extraction_warnings && (
-            <div className="mt-3 p-2 rounded bg-[color-mix(in_srgb,var(--color-warning)_10%,transparent)] text-xs text-[var(--color-warning)]">
-              {selectedDoc.extraction_warnings}
+            <div className="mt-space-md p-space-sm rounded-lg bg-error-container flex items-start gap-space-sm">
+              <span className="material-symbols-outlined text-[18px] text-on-error-container mt-0.5">
+                warning
+              </span>
+              <p className="font-body-sm text-body-sm text-on-error-container">
+                {selectedDoc.extraction_warnings}
+              </p>
             </div>
           )}
-          <div className="flex gap-2 mt-3">
+
+          <div className="flex gap-space-sm mt-space-md">
             <button
               onClick={() => refetch()}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--color-bg-tertiary)] text-xs hover:bg-[var(--color-bg-hover)] transition-colors"
+              className="flex items-center gap-space-xs h-8 px-space-sm bg-surface-container-low hover:bg-surface-container text-on-surface rounded font-label-sm text-label-sm transition-colors"
             >
-              <RotateCw size={12} /> Reprocess
+              <span className="material-symbols-outlined text-[16px]">refresh</span>
+              Reprocess
             </button>
             <button
               onClick={async () => {
@@ -184,9 +387,10 @@ export default function DocumentList() {
                   setSelectedDoc(null);
                 }
               }}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-[var(--color-danger)] hover:bg-[color-mix(in_srgb,var(--color-danger)_10%,transparent)] transition-colors"
+              className="flex items-center gap-space-xs h-8 px-space-sm bg-error-container hover:bg-error text-on-error-container hover:text-on-error rounded font-label-sm text-label-sm transition-colors"
             >
-              <Trash2 size={12} /> Delete
+              <span className="material-symbols-outlined text-[16px]">delete</span>
+              Delete
             </button>
           </div>
         </div>
