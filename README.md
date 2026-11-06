@@ -28,10 +28,12 @@ Built with FastAPI, React 18, Tauri 2, and local LLMs via llama.cpp, CounselOS t
 - [Design System](#design-system)
 - [API Reference](#api-reference)
 - [Project Structure](#project-structure)
-- [Installation & Setup](#installation--setup)
+- [Quick Start (Standalone Executable)](#quick-start-standalone-executable)
+- [Installation & Setup (Development)](#installation--setup-development)
 - [Usage Guide](#usage-guide)
 - [Trade-offs & Design Decisions](#trade-offs--design-decisions)
 - [Configuration Reference](#configuration-reference)
+- [Building the Executable from Source](#building-the-executable-from-source)
 - [Testing](#testing)
 - [License](#license)
 
@@ -776,7 +778,155 @@ CounselOS/
 
 ---
 
-## Installation & Setup
+## Quick Start (Standalone Executable)
+
+The fastest way to use CounselOS. No Python, Node.js, or Rust installation required. Just download, configure, and run.
+
+### What You Get
+
+```
+CounselOS/
+├── CounselOS.exe              ← main application (double-click to run)
+├── Start CounselOS.bat        ← launcher with console output (recommended)
+├── .env.example               ← configuration template
+└── _internal/                 ← bundled runtime (do not modify)
+```
+
+### Step 1: Download & Extract
+
+Download the `CounselOS.zip` file and extract it to any location on your computer (e.g., `C:\CounselOS` or your Desktop). Do **not** extract it into a path that contains special characters or very deep nesting.
+
+### Step 2: Install Tesseract OCR (Required for Scanned PDFs)
+
+If you plan to upload scanned PDF documents (not digitally-created PDFs), install Tesseract OCR:
+
+1. Download the Windows installer from [UB Mannheim Tesseract](https://github.com/UB-Mannheim/tesseract/wiki)
+2. During installation, check the box for **Hindi** language pack under "Additional language data"
+3. Install to the default path: `C:\Program Files\Tesseract-OCR\`
+4. Note the installation path — you may need it in Step 3
+
+If you only work with digitally-created PDFs (not scans/photos), you can skip this step.
+
+### Step 3: Download an AI Model (Required for AI Features)
+
+CounselOS uses a local AI model in GGUF format for question answering, claim extraction, chronology building, and document comparison. You need to download one:
+
+**Recommended models (pick one):**
+
+| Model | Size | RAM Required | Best For |
+|---|---|---|---|
+| Llama 3.1 8B Instruct Q4_K_M | ~4.5 GB | 16 GB RAM | Best quality — recommended for most users |
+| Mistral 7B Instruct v0.3 Q4_K_M | ~4.1 GB | 16 GB RAM | Strong alternative, slightly faster |
+| Phi-3 Mini 4B Q4_K_M | ~2.5 GB | 8 GB RAM | For systems with limited RAM |
+
+**Where to download:**
+- Visit [HuggingFace](https://huggingface.co) and search for the model name with "GGUF"
+- Download the file ending in `Q4_K_M.gguf`
+- Save it to a permanent location, e.g., `C:\CounselOS\models\` or `C:\Users\YourName\.counselos\models\`
+
+**If you skip this step:** CounselOS will still work for document upload, text extraction, OCR, keyword search, and semantic search. Only the AI-powered features (Ask AI, Claim Extraction, Chronology, Document Comparison) will be unavailable.
+
+### Step 4: Configure CounselOS
+
+1. In the `CounselOS` folder, find `.env.example`
+2. **Copy** it and rename the copy to `.env` (just `.env`, no other extension)
+3. Open `.env` in Notepad and configure:
+
+```ini
+# REQUIRED — path to your downloaded GGUF model file
+COUNSELOS_LLM_MODEL_PATH=C:\CounselOS\models\llama-3.1-8b-instruct-q4_k_m.gguf
+
+# OPTIONAL — GPU acceleration (NVIDIA GPU only)
+# Set to the number of model layers to offload to GPU
+# 0 = CPU only (default), 35 = full offload for 8B models
+COUNSELOS_LLM_GPU_LAYERS=0
+
+# OPTIONAL — CPU threads for AI inference (default: 4)
+# Set to the number of performance cores on your CPU
+COUNSELOS_LLM_THREADS=4
+
+# OPTIONAL — Tesseract OCR path (only if not in default location)
+# Uncomment and edit if Tesseract is not at the default path
+# COUNSELOS_TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+> **Important:** Use the full absolute path to the model file. Use backslashes (`\`) on Windows. Do not wrap the path in quotes.
+
+### Step 5: Launch CounselOS
+
+**Option A (Recommended):** Double-click `Start CounselOS.bat`
+- A console window opens showing server startup progress
+- Your default browser opens automatically to `http://127.0.0.1:8741`
+- Keep the console window open while using CounselOS
+- Press `Ctrl+C` in the console to stop the server when done
+
+**Option B:** Double-click `CounselOS.exe` directly
+- Same behavior, but the console window may close if an error occurs
+
+### Step 6: Start Using CounselOS
+
+Once the browser opens:
+
+1. **Create a Matter** — click **+ New Matter** in the top-right. Enter the case title, reference number (e.g., `CS(OS) 1234/2024`), jurisdiction, and matter type.
+
+2. **Upload Documents** — navigate to **Documents** in the sidebar. Drag and drop PDF or DOCX files, or click the upload button. Wait for processing to complete (status changes from "processing" to "indexed").
+
+3. **Search Your Evidence** — go to **Search & Ask**:
+   - **Keyword Search** — finds exact matches. Great for case numbers, names, dates, statutory sections.
+   - **Ask AI** — pose natural language questions like "What date did the defendant sign the agreement?" and get cited answers with page references.
+
+4. **Extract Claims** — from the **Compare** view, extract structured claims (factual, temporal, financial, legal) from your documents.
+
+5. **Build Chronology** — go to **Chronology** and click **Build Chronology** to create an AI-generated timeline with source citations.
+
+6. **Compare Documents** — select two documents in **Compare** to identify contradictions, date discrepancies, and corroborations.
+
+7. **Review Findings** — all AI outputs start as "pending" in **Findings**. Accept, reject, or flag each finding.
+
+8. **Export Report** — go to **Export** to generate a DOCX report with your reviewed findings, chronology, and source citations.
+
+### Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| **Browser doesn't open** | Manually navigate to `http://127.0.0.1:8741` in any browser |
+| **"Port 8741 is already in use"** | Another instance is already running. Check your taskbar/system tray, or restart your computer |
+| **AI features show "unavailable"** | Check that `COUNSELOS_LLM_MODEL_PATH` in `.env` points to a valid `.gguf` file |
+| **OCR not working on scanned PDFs** | Install Tesseract OCR (Step 2). If installed to a non-default path, set `COUNSELOS_TESSERACT_CMD` in `.env` |
+| **Application crashes on startup** | Ensure you have enough free RAM (8 GB minimum, 16 GB recommended). Check the console window for error messages |
+| **"Session token" error in browser** | The backend may still be starting up. Wait 10-15 seconds and refresh the page |
+| **Slow AI responses** | Normal on CPU — an 8B model generates ~10-15 tokens/second. Set `COUNSELOS_LLM_GPU_LAYERS=35` if you have an NVIDIA GPU with 6+ GB VRAM |
+| **Hindi OCR not working** | Ensure the Hindi language pack was installed with Tesseract. Set `COUNSELOS_OCR_LANGUAGE=eng+hin` in `.env` |
+
+### Where Is My Data Stored?
+
+All data is stored locally at `C:\Users\<YourName>\.counselos\data\`:
+
+```
+~/.counselos/data/
+├── counselos.db          ← SQLite database (all matters, findings, etc.)
+├── session.token         ← temporary auth token (regenerated each launch)
+├── faiss_index/          ← vector search index
+├── originals/            ← uploaded document files
+├── extracted/            ← extracted text from documents
+├── exports/              ← generated DOCX reports
+└── backups/              ← encrypted backup archives
+```
+
+You can back up or move this entire folder. To start fresh, delete this folder and CounselOS will create a new one on next launch.
+
+### Uninstalling
+
+1. Close CounselOS (Ctrl+C in the console or close the window)
+2. Delete the `CounselOS` folder
+3. Optionally delete `C:\Users\<YourName>\.counselos\` to remove all stored data
+4. Optionally uninstall Tesseract OCR from Windows Settings → Apps
+
+---
+
+## Installation & Setup (Development)
+
+These instructions are for developers who want to modify, debug, or contribute to CounselOS.
 
 ### Prerequisites
 
@@ -804,6 +954,9 @@ source .venv/bin/activate
 
 # Install the backend with all dependencies
 pip install -e ".[dev]"
+
+# Install AI dependencies (optional but recommended)
+pip install -e ".[ai]"
 
 # (Optional) Download a GGUF model for AI features
 # Place the .gguf file anywhere and set COUNSELOS_LLM_MODEL_PATH
@@ -838,17 +991,6 @@ npm run dev
 # From apps/desktop/
 npm run tauri dev
 # Compiles Rust shell and launches native window
-```
-
-### Building for Production
-
-```bash
-# Backend: no separate build step (Python)
-
-# Frontend + Tauri:
-cd apps/desktop
-npm run tauri build
-# Produces platform-specific installers in src-tauri/target/release/bundle/
 ```
 
 ### Environment Variables
@@ -1027,6 +1169,80 @@ See the [Environment Variables](#environment-variables) table in the Installatio
     ├── exports/              # Generated DOCX reports
     └── backups/              # Encrypted backup archives
 ```
+
+---
+
+## Building the Executable from Source
+
+If you want to build the standalone `CounselOS.exe` yourself from the source code:
+
+### Prerequisites
+
+1. All development prerequisites installed (Python 3.11+, Node.js 18+)
+2. Backend dependencies: `pip install -e ".[ai]"`
+3. PyInstaller: `pip install pyinstaller`
+4. Frontend built: `cd apps/desktop && npm install && npm run build`
+
+### Build Process
+
+```bash
+# From the project root
+cd CounselOS
+
+# Step 1: Build the React frontend (produces apps/desktop/dist/)
+cd apps/desktop
+npm run build
+cd ../..
+
+# Step 2: Run the build script
+python build_exe.py
+```
+
+This takes 5-15 minutes depending on your system. PyInstaller analyzes all Python imports, copies binary dependencies, bundles the frontend, and creates the executable.
+
+### Build Output
+
+```
+dist/CounselOS/
+├── CounselOS.exe              (124 MB — main executable)
+├── Start CounselOS.bat        (launcher with console output)
+├── .env.example               (configuration template for end users)
+└── _internal/                 (~877 MB — Python runtime + all libraries)
+    ├── frontend_dist/         (built React UI served by FastAPI)
+    ├── torch/                 (PyTorch for sentence-transformers)
+    ├── sentence_transformers/ (embedding model runtime)
+    └── ...                    (FastAPI, SQLAlchemy, PyMuPDF, FAISS, etc.)
+```
+
+**Total distribution size:** ~1 GB (primarily PyTorch + sentence-transformers)
+
+### Build Internals
+
+The build uses three files:
+
+| File | Purpose |
+|---|---|
+| `launcher.py` | Entry point — starts FastAPI, serves the built frontend as static files, opens the browser |
+| `counselos.spec` | PyInstaller spec — defines hidden imports, data files to bundle, and output structure |
+| `build_exe.py` | Build orchestrator — checks prerequisites, runs PyInstaller, creates `.env.example` and `.bat` launcher |
+
+**How it works:**
+1. `launcher.py` detects whether it's running from source or frozen (PyInstaller bundles set `sys.frozen = True`)
+2. In frozen mode, it finds the frontend at `sys._MEIPASS/frontend_dist/`
+3. It mounts the frontend as static files on the FastAPI app and adds a catch-all route for React Router
+4. It starts Uvicorn on `127.0.0.1:8741` and opens the default browser
+5. The `.env` file (if present alongside the exe) is read by pydantic-settings automatically
+
+### Customizing the Build
+
+To reduce the distribution size:
+- Remove `sentence_transformers` and `torch` from `counselos.spec` hidden imports if you don't need semantic search (~700 MB saved)
+- Remove `llama_cpp` if you don't need AI features (~50 MB saved)
+- Use UPX compression (already enabled in the spec, but install UPX separately: `choco install upx` or download from [upx.github.io](https://upx.github.io/))
+
+To add an application icon:
+- Place a `.ico` file in the project root
+- Update the `icon=None` line in `counselos.spec` to `icon='your-icon.ico'`
 
 ---
 
